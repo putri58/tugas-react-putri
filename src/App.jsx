@@ -1,11 +1,12 @@
-import BiodataDiri from "./components/BiodataDiri";
+// import BiodataDiri from "./components/BiodataDiri";
+import VolunteerForm from './TugasTiga/VolunteerForm';
 
 function App() {
   return (
     <div>
-      <BiodataDiri />
+      <VolunteerForm />
     </div>
   );
 }
 
-export default BiodataDiri;
+export default VolunteerForm;
