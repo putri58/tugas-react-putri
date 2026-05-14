@@ -2,29 +2,22 @@ import React from "react";
 
 export default function SelectField({ label, options, value, onChange, error }) {
   return (
-    <div className="mb-5 w-full">
-      <label className="block text-gray-700 text-sm font-bold mb-2 uppercase tracking-wide">
+    <div className="w-full mb-4 text-left">
+      <label className="block text-[11px] font-black text-emerald-900 uppercase tracking-widest mb-1">
         {label}
       </label>
       <select
         value={value}
         onChange={onChange}
-        className={`w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 outline-none bg-gray-50
-          ${error 
-            ? "border-red-400 bg-red-50 focus:border-red-500" 
-            : "border-gray-100 focus:border-indigo-400 focus:bg-white focus:shadow-md"
-          }`}
+        className={`w-full px-4 py-3 rounded-xl bg-white border-2 text-slate-900 outline-none transition-all duration-300 shadow-sm font-bold text-xs appearance-none
+          ${error ? "border-red-400 focus:ring-4 focus:ring-red-50" : "border-emerald-100 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-50"}`}
       >
-        <option value="">-- Pilih {label} --</option>
-        {options.map((opt, index) => (
-          <option key={index} value={opt}>{opt}</option>
+        <option value="">Pilih {label}</option>
+        {options.map((opt, i) => (
+          <option key={i} value={opt}>{opt}</option>
         ))}
       </select>
-      {error && (
-        <p className="text-red-500 text-xs mt-2 italic font-medium">
-          ⚠️ {error}
-        </p>
-      )}
+      {error && <p className="text-[10px] text-red-500 font-bold mt-1 italic tracking-tight">🐾 {error}</p>}
     </div>
   );
 }

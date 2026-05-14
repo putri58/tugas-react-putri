@@ -1,0 +1,322 @@
+[
+  {
+    "id": 1,
+    "name": "Pantai Kuta",
+    "description": "Pantai terkenal dengan sunset indah.",
+    "location": "Bali",
+    "price": 50000,
+    "rating": 4.7,
+    "image": "https://i.pinimg.com/1200x/bb/27/e7/bb27e7a118d6bcb07144311f63c6b872.jpg",
+    "details": {
+      "city": "Badung",
+      "openHours": "24 Jam",
+      "manager": "Pemda Bali"
+    },
+    "category": "Pantai",
+    "tags": ["Sunset", "Populer", "Wisata"]
+  },
+  {
+    "id": 2,
+    "name": "Candi Borobudur",
+    "description": "Candi Buddha terbesar di dunia.",
+    "location": "Jawa Tengah",
+    "price": 75000,
+    "rating": 4.8,
+    "image": "https://i.pinimg.com/1200x/18/84/f0/1884f0e70d91873d68c543940fcdc4a1.jpg",
+    "details": {
+      "city": "Magelang",
+      "openHours": "06:00 - 17:00",
+      "manager": "Kemenparekraf"
+    },
+    "category": "Sejarah",
+    "tags": ["Budaya", "UNESCO", "Religi"]
+  },
+  {
+    "id": 3,
+    "name": "Gunung Bromo",
+    "description": "Gunung berapi aktif dengan pemandangan indah.",
+    "location": "Jawa Timur",
+    "price": 60000,
+    "rating": 4.9,
+    "image": "https://i.pinimg.com/736x/d0/57/42/d057426235f0b63655bc6fc90f48837a.jpg",
+    "details": {
+      "city": "Malang",
+      "openHours": "24 Jam",
+      "manager": "TNBTS"
+    },
+    "category": "Gunung",
+    "tags": ["Sunrise", "Petualangan", "Alam"]
+  },
+  {
+    "id": 4,
+    "name": "Raja Ampat",
+    "description": "Surga bawah laut Indonesia.",
+    "location": "Papua",
+    "price": 150000,
+    "rating": 4.9,
+    "image": "https://i.pinimg.com/1200x/4b/8f/1e/4b8f1eea3a2c000826e95d81d4de2f42.jpg",
+    "details": {
+      "city": "Sorong",
+      "openHours": "24 Jam",
+      "manager": "Pemda Papua"
+    },
+    "category": "Pantai",
+    "tags": ["Diving", "Eksotis", "Alam"]
+  },
+  {
+    "id": 5,
+    "name": "Danau Toba",
+    "description": "Danau vulkanik terbesar di dunia.",
+    "location": "Sumatera Utara",
+    "price": 30000,
+    "rating": 4.7,
+    "image": "https://i.pinimg.com/736x/5a/c6/74/5ac674d17c10079449526522d4917583.jpg",
+    "details": {
+      "city": "Parapat",
+      "openHours": "24 Jam",
+      "manager": "Pemda Sumut"
+    },
+    "category": "Danau",
+    "tags": ["Alam", "Tenang", "Wisata"]
+  },
+  {
+    "id": 6,
+    "name": "Pantai Parangtritis",
+    "description": "Pantai dengan legenda Nyi Roro Kidul.",
+    "location": "Yogyakarta",
+    "price": 20000,
+    "rating": 4.5,
+    "image": "https://i.pinimg.com/736x/9e/62/00/9e62008cc94f4bc4180047558509b7a9.jpg",
+    "details": {
+      "city": "Bantul",
+      "openHours": "24 Jam",
+      "manager": "Pemda DIY"
+    },
+    "category": "Pantai",
+    "tags": ["Budaya", "Mitos", "Wisata"]
+  },
+  {
+    "id": 7,
+    "name": "Taman Mini Indonesia Indah",
+    "description": "Miniatur budaya Indonesia.",
+    "location": "Jakarta",
+    "price": 25000,
+    "rating": 4.6,
+    "image": "https://i.pinimg.com/736x/5f/77/6b/5f776b474fa5aac58a9f8f741904711e.jpg",
+    "details": {
+      "city": "Jakarta Timur",
+      "openHours": "08:00 - 17:00",
+      "manager": "TMII"
+    },
+    "category": "Taman",
+    "tags": ["Edukasi", "Budaya", "Keluarga"]
+  },
+  {
+    "id": 8,
+    "name": "Kawah Ijen",
+    "description": "Kawah dengan fenomena blue fire.",
+    "location": "Jawa Timur",
+    "price": 50000,
+    "rating": 4.8,
+    "image": "https://i.pinimg.com/1200x/98/19/fe/9819fece82502535bb8736d361e83b86.jpg",
+    "details": {
+      "city": "Banyuwangi",
+      "openHours": "24 Jam",
+      "manager": "Perhutani"
+    },
+    "category": "Gunung",
+    "tags": ["Blue Fire", "Petualangan", "Alam"]
+  },
+  {
+    "id": 9,
+    "name": "Pulau Komodo",
+    "description": "Habitat asli komodo.",
+    "location": "NTT",
+    "price": 100000,
+    "rating": 4.9,
+    "image": "https://i.pinimg.com/736x/29/d1/b8/29d1b89cedab4d1c8c4684e72ea55ad3.jpg",
+    "details": {
+      "city": "Labuan Bajo",
+      "openHours": "08:00 - 17:00",
+      "manager": "TN Komodo"
+    },
+    "category": "Pulau",
+    "tags": ["Hewan", "Eksotis", "Alam"]
+  },
+  {
+    "id": 10,
+    "name": "Trans Studio Bandung",
+    "description": "Theme park indoor terbesar.",
+    "location": "Jawa Barat",
+    "price": 150000,
+    "rating": 4.6,
+    "image": "https://i.pinimg.com/736x/dd/a0/4e/dda04ebcf5fa30c2a98d94f237f317b1.jpg",
+    "details": {
+      "city": "Bandung",
+      "openHours": "10:00 - 18:00",
+      "manager": "CT Corp"
+    },
+    "category": "Taman",
+    "tags": ["Hiburan", "Indoor", "Keluarga"]
+  },
+  {
+    "id": 11,
+    "name": "Pantai Pink",
+    "description": "Pantai unik berwarna pink.",
+    "location": "NTT",
+    "price": 80000,
+    "rating": 4.7,
+    "image": "https://i.pinimg.com/1200x/c1/5d/b2/c15db2b8370807bff4875f495b5b3a37.jpg",
+    "details": {
+      "city": "Labuan Bajo",
+      "openHours": "24 Jam",
+      "manager": "TN Komodo"
+    },
+    "category": "Pantai",
+    "tags": ["Unik", "Eksotis", "Wisata"]
+  },
+  {
+    "id": 12,
+    "name": "Gunung Rinjani",
+    "description": "Gunung tertinggi kedua di Indonesia.",
+    "location": "NTB",
+    "price": 70000,
+    "rating": 4.8,
+    "image": "https://i.pinimg.com/1200x/1a/db/b5/1adbb56812ed4bebbccbb9f8bbae5301.jpg",
+    "details": {
+      "city": "Lombok",
+      "openHours": "24 Jam",
+      "manager": "TN Rinjani"
+    },
+    "category": "Gunung",
+    "tags": ["Pendakian", "Alam", "Petualangan"]
+  },
+  {
+    "id": 13,
+    "name": "Kota Tua Jakarta",
+    "description": "Kawasan bersejarah di Jakarta.",
+    "location": "Jakarta",
+    "price": 10000,
+    "rating": 4.4,
+    "image": "https://i.pinimg.com/736x/f8/2c/7e/f82c7eeeb844913716da4ac57ae697f3.jpg",
+    "details": {
+      "city": "Jakarta Barat",
+      "openHours": "08:00 - 20:00",
+      "manager": "Pemprov DKI"
+    },
+    "category": "Sejarah",
+    "tags": ["Kolonial", "Edukasi", "Wisata"]
+  },
+  {
+    "id": 14,
+    "name": "Pantai Tanjung Tinggi",
+    "description": "Pantai dengan batu granit besar.",
+    "location": "Belitung",
+    "price": 30000,
+    "rating": 4.6,
+    "image": "https://i.pinimg.com/736x/2e/ed/26/2eed269b20cdfde48d1743656b100449.jpg",
+    "details": {
+      "city": "Belitung",
+      "openHours": "24 Jam",
+      "manager": "Pemda Belitung"
+    },
+    "category": "Pantai",
+    "tags": ["Batu", "Alam", "Wisata"]
+  },
+  {
+    "id": 15,
+    "name": "Jatim Park",
+    "description": "Tempat wisata edukasi dan hiburan.",
+    "location": "Jawa Timur",
+    "price": 120000,
+    "rating": 4.7,
+    "image": "https://i.pinimg.com/736x/3a/31/f6/3a31f6d3a7011073f96edae843795605.jpg",
+    "details": {
+      "city": "Batu",
+      "openHours": "09:00 - 17:00",
+      "manager": "Jatim Park Group"
+    },
+    "category": "Taman",
+    "tags": ["Edukasi", "Hiburan", "Keluarga"]
+  },
+  {
+    "id": 16,
+    "name": "Bukit Tinggi",
+    "description": "Kota wisata dengan Jam Gadang.",
+    "location": "Sumatera Barat",
+    "price": 20000,
+    "rating": 4.6,
+    "image": "https://i.pinimg.com/1200x/29/6d/84/296d84e00df5ce3a719d5d784ca9d8fb.jpg",
+    "details": {
+      "city": "Bukittinggi",
+      "openHours": "24 Jam",
+      "manager": "Pemda Sumbar"
+    },
+    "category": "Kota",
+    "tags": ["Budaya", "Sejarah", "Wisata"]
+  },
+  {
+    "id": 17,
+    "name": "Pantai Losari",
+    "description": "Ikon wisata Makassar.",
+    "location": "Sulawesi Selatan",
+    "price": 0,
+    "rating": 4.5,
+    "image": "https://i.pinimg.com/736x/5f/7d/86/5f7d86249095fd3e2dcc17c396e0c5ef.jpg",
+    "details": {
+      "city": "Makassar",
+      "openHours": "24 Jam",
+      "manager": "Pemda Makassar"
+    },
+    "category": "Pantai",
+    "tags": ["Gratis", "Kota", "Wisata"]
+  },
+  {
+    "id": 18,
+    "name": "Taman Safari",
+    "description": "Wisata melihat satwa secara langsung.",
+    "location": "Bogor",
+    "price": 180000,
+    "rating": 4.7,
+    "image": "https://i.pinimg.com/1200x/6c/f3/42/6cf342e66686b35fbfaeb6e6c3a9e51f.jpg",
+    "details": {
+      "city": "Bogor",
+      "openHours": "08:00 - 17:00",
+      "manager": "Taman Safari"
+    },
+    "category": "Taman",
+    "tags": ["Hewan", "Keluarga", "Edukasi"]
+  },
+  {
+    "id": 19,
+    "name": "Air Terjun Tumpak Sewu",
+    "description": "Air terjun paling indah di Jawa.",
+    "location": "Jawa Timur",
+    "price": 20000,
+    "rating": 4.9,
+    "image": "https://i.pinimg.com/1200x/01/12/c1/0112c1fdc7d0b96926573383d8c3519d.jpg",
+    "details": {
+      "city": "Lumajang",
+      "openHours": "07:00 - 17:00",
+      "manager": "Pemda Jatim"
+    },
+    "category": "Air Terjun",
+    "tags": ["Alam", "Fotografi", "Wisata"]
+  },
+  {
+    "id": 20,
+    "name": "Pantai Nihiwatu",
+    "description": "Pantai eksklusif kelas dunia.",
+    "location": "NTT",
+    "price": 250000,
+    "rating": 4.9,
+    "image": "https://i.pinimg.com/736x/94/cf/30/94cf3050b13d5753922b4702a12a522b.jpg",
+    "details": {
+      "city": "Sumba",
+      "openHours": "24 Jam",
+      "manager": "Resort Nihiwatu"
+    },
+    "category": "Pantai",
+    "tags": ["Mewah", "Eksklusif", "Resort"]
+  }
+]

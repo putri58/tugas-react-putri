@@ -20,7 +20,6 @@ function BiodataDiri() {
           <img src="img\fotoputri.jpeg" alt="profile" />
         </div>
       </div>
-
       {/* CONTENT */}
       <div className="content">
 
@@ -34,22 +33,6 @@ function BiodataDiri() {
           <h3>HOBI</h3>
           <div className="box"><Hobi /></div>
         </div>
-
-        {/* RIGHT */}
-        {/* <div className="right">
-          <h3>TENTANG SAYA</h3>
-          <p>
-            Saya adalah mahasiswa yang memiliki minat dalam bidang teknologi
-            dan pengembangan aplikasi. Saya senang belajar hal baru dan
-            mengembangkan keterampilan di dunia IT.
-          </p>
-
-          <h3>PENDIDIKAN</h3>
-          <p>Politeknik Caltex Riau (2023 - Sekarang)</p>
-
-          <h3>KEAHLIAN</h3>
-          <p>Frontend Development, UI/UX Design</p>
-        </div> */}
 
       </div>
     </div>
