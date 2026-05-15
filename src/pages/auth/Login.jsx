@@ -3,8 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
+import { IoCloseOutline } from "react-icons/io5";
 
 export default function Login() {
+
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -17,7 +19,11 @@ export default function Login() {
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-    setDataForm({ ...dataForm, [name]: value });
+
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -44,84 +50,98 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f7ff] flex items-center justify-center px-6">
-      
-      <div className="w-full max-w-md">
-        
-        {/* Logo */}
-        <div className="mb-10 text-center">
-          <h1 className="text-5xl font-black tracking-tight text-[#1e1e2f]">
-            Vet<span className="text-[#5b5ce2]">Care</span>
-          </h1>
+    <div className="min-h-screen bg-[#1b12c9] flex items-center justify-center relative px-4">
 
-          <p className="text-gray-500 mt-3 text-sm">
-            Login to continue your account
+      {/* Close Button */}
+      <button className="absolute top-10 text-white border border-white rounded-full p-2">
+        <IoCloseOutline size={22} />
+      </button>
+
+      {/* Form Box */}
+      <div className="bg-[#f5f5f5] w-full max-w-md rounded-[30px] px-10 py-12">
+
+
+
+        {/* Title */}
+        <h2 className="text-center text-[20px] font-bold text-gray-800 mb-8">
+          Login
+        </h2>
+
+        {/* Error */}
+        {error && (
+          <div className="flex items-center gap-2 bg-red-100 border border-red-300 text-red-600 text-sm p-3 rounded-xl mb-5">
+            <BsFillExclamationDiamondFill />
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+
+          {/* Username */}
+          <div>
+            <label className="block text-sm text-gray-600 mb-2">
+              Username
+            </label>
+
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter username"
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded-full px-5 py-4 text-sm outline-none bg-transparent"
+            />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm text-gray-600 mb-2">
+              Password
+            </label>
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              onChange={handleChange}
+              required
+              className="w-full border border-gray-300 rounded-full px-5 py-4 text-sm outline-none bg-transparent"
+            />
+          </div>
+
+          {/* Checkbox */}
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <input type="checkbox" className="accent-[#1b12c9]" />
+
+            <p>
+              I accept the{" "}
+              <span className="text-[#1b12c9] underline cursor-pointer">
+                Terms & Conditions
+              </span>
+            </p>
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-[#1b12c9] hover:bg-[#140da1] text-white py-4 rounded-full font-semibold transition"
+          >
+            {loading ? (
+              <ImSpinner2 className="animate-spin mx-auto text-xl" />
+            ) : (
+              "LOGIN"
+            )}
+          </button>
+
+          {/* Footer */}
+          <p className="text-center text-sm text-gray-500">
+            Already have an account?{" "}
+            <span className="text-[#1b12c9] cursor-pointer">
+              Login
+            </span>
           </p>
-        </div>
-
-        {/* Card */}
-        <div className="bg-white rounded-[32px] p-8 shadow-[0_10px_40px_rgba(91,92,226,0.08)]">
-          
-          <h2 className="text-3xl font-bold text-center text-[#1e1e2f]">
-            Welcome Back 👋
-          </h2>
-
-          <p className="text-center text-gray-400 mt-2 mb-8 text-sm">
-            Please enter your account details
-          </p>
-
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-500 p-4 rounded-2xl flex items-center text-sm mb-5">
-              <BsFillExclamationDiamondFill className="mr-2 text-lg" />
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            
-            <div>
-              <label className="text-sm font-semibold text-gray-600 mb-2 block">
-                Username
-              </label>
-
-              <input
-                type="text"
-                name="username"
-                placeholder="Enter your username"
-                onChange={handleChange}
-                required
-                className="w-full bg-[#f4f7fe] p-4 rounded-2xl outline-none border border-transparent focus:border-[#5b5ce2] focus:bg-white transition-all"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-semibold text-gray-600 mb-2 block">
-                Password
-              </label>
-
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                onChange={handleChange}
-                required
-                className="w-full bg-[#f4f7fe] p-4 rounded-2xl outline-none border border-transparent focus:border-[#5b5ce2] focus:bg-white transition-all"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-[#5b5ce2] hover:bg-[#4b4cd3] text-white p-4 rounded-2xl font-bold transition-all duration-300 flex items-center justify-center shadow-lg shadow-indigo-100 mt-2"
-            >
-              {loading ? (
-                <ImSpinner2 className="animate-spin text-2xl" />
-              ) : (
-                "Login"
-              )}
-            </button>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
   );
