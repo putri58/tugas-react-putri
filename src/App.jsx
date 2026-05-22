@@ -12,7 +12,7 @@ import Loading from "./components/Loading";
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 
 const Appointments = React.lazy(() =>
-  import("./pages/Appointments")
+  import("./pages/appointments")
 );
 
 const Login = React.lazy(() =>
