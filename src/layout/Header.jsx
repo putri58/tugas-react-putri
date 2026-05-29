@@ -1,6 +1,7 @@
 import { FaBell } from "react-icons/fa";
 import SearchInput from "../components/form/SearchInput";
 import UserProfile from "../components/UserProfile";
+import Avatar from "../components/basic/Avatar";
 
 export default function Header() {
   return (
