@@ -15,6 +15,10 @@ const Appointments = React.lazy(() =>
   import("./pages/appointments")
 );
 
+const Components = React.lazy(() =>
+  import("./pages/components")
+);
+
 const Login = React.lazy(() =>
   import("./pages/auth/Login")
 );
@@ -41,6 +45,11 @@ export default function App() {
           <Route
             path="/appointments"
             element={<Appointments />}
+          />
+
+          <Route
+            path="/components"
+            element={<Components />}
           />
 
         </Route>

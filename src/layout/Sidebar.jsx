@@ -7,6 +7,8 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
+import Container from "../components/layout/Container";
+
 export default function Sidebar() {
 
   const menuClass = ({ isActive }) =>
@@ -18,7 +20,8 @@ export default function Sidebar() {
     }`;
 
   return (
-    <div className="w-[260px] bg-white p-6 border-r min-h-screen">
+
+    <Container className="w-[260px] bg-white border-r min-h-screen">
 
       {/* Logo */}
       <div className="mb-10">
@@ -70,6 +73,6 @@ export default function Sidebar() {
 
       </div>
 
-    </div>
+    </Container>
   );
 }

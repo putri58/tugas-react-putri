@@ -1,14 +1,15 @@
-import {
-  FaArrowUp,
-  FaBell,
-} from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
+
+import Card from "../components/data-display/Card";
 
 export default function Dashboard() {
+
   return (
     <div className="space-y-5">
 
       {/* Welcome */}
       <div>
+
         <h1 className="text-red-500 font-bold text-lg">
           Welcome Dr.Putree,
         </h1>
@@ -16,13 +17,14 @@ export default function Dashboard() {
         <p className="text-gray-400 text-sm">
           How're you feeling today?
         </p>
+
       </div>
 
       {/* TOP CARDS */}
       <div className="grid grid-cols-4 gap-5">
 
         {/* Card 1 */}
-        <div className="bg-white rounded-3xl p-5 border border-gray-100">
+        <Card>
 
           <p className="text-gray-400 text-xs font-semibold uppercase">
             Diagnosticts
@@ -33,6 +35,7 @@ export default function Dashboard() {
             <div className="relative w-36 h-36 rounded-full border-[14px] border-pink-500 border-t-yellow-400 border-l-blue-700 border-r-purple-500 flex items-center justify-center">
 
               <div className="text-center">
+
                 <h1 className="text-2xl font-extrabold text-[#2d2dcf]">
                   187.2k
                 </h1>
@@ -40,6 +43,7 @@ export default function Dashboard() {
                 <p className="text-xs text-gray-400">
                   Appointments
                 </p>
+
               </div>
 
             </div>
@@ -65,10 +69,10 @@ export default function Dashboard() {
 
           </div>
 
-        </div>
+        </Card>
 
         {/* Card 2 */}
-        <div className="bg-white rounded-3xl p-5 border border-gray-100">
+        <Card>
 
           <p className="text-gray-400 text-xs font-semibold uppercase">
             Patients
@@ -79,6 +83,7 @@ export default function Dashboard() {
             <div className="relative w-32 h-32 rounded-full border-[12px] border-[#2d2dcf] border-r-red-500 border-l-yellow-400 flex items-center justify-center">
 
               <div className="text-center">
+
                 <h1 className="text-2xl font-extrabold text-[#2d2dcf]">
                   11M
                 </h1>
@@ -86,6 +91,7 @@ export default function Dashboard() {
                 <p className="text-xs text-gray-400">
                   Patients
                 </p>
+
               </div>
 
             </div>
@@ -111,7 +117,7 @@ export default function Dashboard() {
 
           </div>
 
-        </div>
+        </Card>
 
         {/* Card 3 */}
         <div className="bg-[#1d1db8] rounded-3xl p-5 text-white relative overflow-hidden">
@@ -140,7 +146,7 @@ export default function Dashboard() {
         </div>
 
         {/* Card 4 */}
-        <div className="bg-white rounded-3xl p-5 border border-gray-100">
+        <Card>
 
           <p className="text-gray-400 text-xs font-semibold uppercase">
             Overall Appointments
@@ -164,7 +170,7 @@ export default function Dashboard() {
 
           </div>
 
-        </div>
+        </Card>
 
       </div>
 
@@ -249,6 +255,7 @@ export default function Dashboard() {
                 <div className="w-12 h-12 rounded-full bg-gray-200"></div>
 
                 <div>
+
                   <h1 className="font-bold text-sm">
                     Bella Vaccination
                   </h1>
@@ -256,6 +263,7 @@ export default function Dashboard() {
                   <p className="text-xs text-gray-400">
                     Thursday, October 14
                   </p>
+
                 </div>
 
               </div>
@@ -265,6 +273,7 @@ export default function Dashboard() {
                 <div className="w-12 h-12 rounded-full bg-gray-200"></div>
 
                 <div>
+
                   <h1 className="font-bold text-sm">
                     Milo Checkup
                   </h1>
@@ -272,6 +281,7 @@ export default function Dashboard() {
                   <p className="text-xs text-gray-400">
                     Monday, November 2
                   </p>
+
                 </div>
 
               </div>
@@ -281,6 +291,7 @@ export default function Dashboard() {
                 <div className="w-12 h-12 rounded-full bg-gray-200"></div>
 
                 <div>
+
                   <h1 className="font-bold text-sm">
                     Coco Grooming
                   </h1>
@@ -288,6 +299,7 @@ export default function Dashboard() {
                   <p className="text-xs text-gray-400">
                     Friday, November 10
                   </p>
+
                 </div>
 
               </div>
@@ -318,6 +330,7 @@ export default function Dashboard() {
                 <div className="w-10 h-10 rounded-full bg-gray-200"></div>
 
                 <div>
+
                   <h1 className="font-bold text-sm">
                     Sick Visit
                   </h1>
@@ -325,6 +338,7 @@ export default function Dashboard() {
                   <p className="text-xs text-gray-400">
                     Friday, August 13
                   </p>
+
                 </div>
 
               </div>
@@ -334,6 +348,7 @@ export default function Dashboard() {
                 <div className="w-10 h-10 rounded-full bg-gray-200"></div>
 
                 <div>
+
                   <h1 className="font-bold text-sm">
                     Consultation
                   </h1>
@@ -341,6 +356,7 @@ export default function Dashboard() {
                   <p className="text-xs text-gray-400">
                     Tuesday, July 20
                   </p>
+
                 </div>
 
               </div>
