@@ -48,6 +48,22 @@ export default function Sidebar() {
           <span>Appointments</span>
         </NavLink>
 
+        <NavLink
+          to="/Pelanggan"
+          className={menuClass}
+        >
+          <FaCalendarAlt />
+          <span>Pelanggan</span>
+        </NavLink>
+
+                <NavLink
+          to="/Layanan"
+          className={menuClass}
+        >
+          <FaCalendarAlt />
+          <span>Layanan</span>
+        </NavLink>
+
       </div>
 
       {/* Bottom */}

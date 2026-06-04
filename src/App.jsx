@@ -15,6 +15,14 @@ const Appointments = React.lazy(() =>
   import("./pages/appointments")
 );
 
+const Pelanggan = React.lazy(() =>
+  import("./pages/Pelanggan")
+);
+
+const Layanan = React.lazy(() =>
+  import("./pages/Layanan")
+);
+
 const Components = React.lazy(() =>
   import("./pages/Components")
 );
@@ -45,6 +53,16 @@ export default function App() {
           <Route
             path="/appointments"
             element={<Appointments />}
+          />
+
+          <Route
+            path="/Pelanggan"
+            element={<Pelanggan />}
+          />
+
+                    <Route
+            path="/Layanan"
+            element={<Layanan />}
           />
 
           <Route
