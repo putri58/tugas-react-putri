@@ -5,6 +5,8 @@ import {
   FaCalendarAlt,
   FaCog,
   FaSignOutAlt,
+  FaUser,
+  FaStethoscope,
 } from "react-icons/fa";
 
 import Container from "../components/layout/Container";
@@ -52,7 +54,7 @@ export default function Sidebar() {
           to="/Pelanggan"
           className={menuClass}
         >
-          <FaCalendarAlt />
+          <FaUser />
           <span>Pelanggan</span>
         </NavLink>
 
@@ -60,7 +62,7 @@ export default function Sidebar() {
           to="/Layanan"
           className={menuClass}
         >
-          <FaCalendarAlt />
+          <FaStethoscope />
           <span>Layanan</span>
         </NavLink>
 
