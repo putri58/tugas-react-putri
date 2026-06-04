@@ -16,7 +16,7 @@ const Appointments = React.lazy(() =>
 );
 
 const Components = React.lazy(() =>
-  import("./pages/components")
+  import("./pages/Components")
 );
 
 const Login = React.lazy(() =>
