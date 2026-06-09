@@ -1,16 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite";
+import react from "@vitejs/react-vite"; // atau @vitejs/plugin-react (sesuaikan dengan bawaanmu)
 
-// https://vite.dev/config/
+// 🌟 TAMBAHKAN BARIS INI DI ATAS:
+import path from "path"; 
+
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      // Baris di bawah inilah yang memicu eror jika 'path' tidak di-import di atas
+      "@": path.resolve(__dirname, "./src"), 
     },
   },
-})
+});
