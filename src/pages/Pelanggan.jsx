@@ -1,4 +1,6 @@
-import React from "react";
+import React from "react"
+import { columnsPasien } from "./columnPasien";
+import { DataTable } from "../components/data-display/Table"; // Path mengarah ke folder display-mu
 
 const dummyPasien = [
   {
@@ -81,7 +83,7 @@ const dummyPasien = [
     dokter: "Drh. Nanda Putra",
     status: "Operasi",
   },
-];
+]
 
 export default function Pelanggan() {
   return (
@@ -89,45 +91,14 @@ export default function Pelanggan() {
       <h1 className="text-3xl font-bold mb-6">
         Data Pasien Cyst - Klinik Dokter Hewan
       </h1>
-
-      <div className="overflow-x-auto bg-white rounded-lg shadow">
-        <table className="w-full border-collapse">
-          <thead className="bg-green-600 text-white">
-            <tr>
-              <th className="p-3">ID</th>
-              <th className="p-3">Pemilik Hewan</th>
-              <th className="p-3">Nama Hewan</th>
-              <th className="p-3">Jenis Hewan</th>
-              <th className="p-3">Umur</th>
-              <th className="p-3">Diagnosis</th>
-              <th className="p-3">Dokter</th>
-              <th className="p-3">Status</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {dummyPasien.map((item) => (
-              <tr
-                key={item.id}
-                className="border-b hover:bg-gray-100 text-center"
-              >
-                <td className="p-3">{item.id}</td>
-                <td className="p-3">{item.namaPemilik}</td>
-                <td className="p-3">{item.namaHewan}</td>
-                <td className="p-3">{item.jenisHewan}</td>
-                <td className="p-3">{item.umur} Tahun</td>
-                <td className="p-3">{item.diagnosis}</td>
-                <td className="p-3">{item.dokter}</td>
-                <td className="p-3">
-                  <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
-                    {item.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      
+      {/* Memasang Tabel Baru */}
+      <DataTable 
+        columns={columnsPasien} 
+        data={dummyPasien} 
+        filterKey="namaPemilik"
+        filterPlaceholder="Cari nama pemilik..."
+      />
     </div>
-  );
+  )
 }
