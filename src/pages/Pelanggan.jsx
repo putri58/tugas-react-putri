@@ -95,7 +95,7 @@ export default function Pelanggan() {
           <thead className="bg-green-600 text-white">
             <tr>
               <th className="p-3">ID</th>
-              <th className="p-3">Pemilik</th>
+              <th className="p-3">Pemilik Hewan</th>
               <th className="p-3">Nama Hewan</th>
               <th className="p-3">Jenis Hewan</th>
               <th className="p-3">Umur</th>
