@@ -32,27 +32,27 @@ export default function Sidebar() {
 
       {/* Menu */}
       <div className="space-y-3">
-        <NavLink to="/" className={menuClass}>
+        <NavLink to="/admin" end className={menuClass}>
           <FaHome />
           <span>Overview</span>
         </NavLink>
 
-        <NavLink to="/appointments" className={menuClass}>
+        <NavLink to="/admin/appointments" className={menuClass}>
           <FaCalendarAlt />
           <span>Appointments</span>
         </NavLink>
 
-        <NavLink to="/Pelanggan" className={menuClass}>
+        <NavLink to="/admin/pelanggan" className={menuClass}>
           <FaUser />
           <span>Pelanggan</span>
         </NavLink>
 
-        <NavLink to="/Layanan" className={menuClass}>
+        <NavLink to="/admin/layanan" className={menuClass}>
           <FaStethoscope />
           <span>Layanan</span>
         </NavLink>
 
-        <NavLink to="/Membership" className={menuClass}>
+        <NavLink to="/admin/membership" className={menuClass}>
           <FaUserCheck />
           <span>Membership</span>
         </NavLink>
@@ -63,12 +63,12 @@ export default function Sidebar() {
         <p className="text-gray-400 text-sm mb-3">ACCOUNT</p>
 
         <div className="space-y-3">
-          <NavLink to="/" className={menuClass}>
+          <NavLink to="/admin/settings" className={menuClass}>
             <FaCog />
             <span>Settings</span>
           </NavLink>
 
-          <NavLink to="/login" className={menuClass}>
+          <NavLink to="/admin/login" className={menuClass}>
             <FaSignOutAlt />
             <span>Logout</span>
           </NavLink>

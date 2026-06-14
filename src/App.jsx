@@ -31,30 +31,35 @@ export default function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
+
         {/* Main Layout */}
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Dashboard />} />
 
-          <Route path="/appointments" element={<Appointments />} />
+          <Route index element={<Dashboard />} />
 
-          <Route path="/Pelanggan" element={<Pelanggan />} />
+          <Route path="appointments" element={<Appointments />} />
 
-          <Route path="/Layanan" element={<Layanan />} />
+          <Route path="pelanggan" element={<Pelanggan />} />
 
-          <Route path="/Membership" element={<Membership />} />
+          <Route path="layanan" element={<Layanan />} />
 
+          <Route path="membership" element={<Membership />} />
 
-          <Route path="/components" element={<Components />} />
+          <Route path="components" element={<Components />} />
+
         </Route>
 
         {/* Auth Layout */}
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
 
-          <Route path="/register" element={<Register />} />
+          <Route path="login" element={<Login />} />
 
-          <Route path="/forgot" element={<Forgot />} />
+          <Route path="register" element={<Register />} />
+
+          <Route path="forgot" element={<Forgot />} />
+
         </Route>
+
       </Routes>
     </Suspense>
   );
