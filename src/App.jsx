@@ -19,6 +19,10 @@ const Layanan = React.lazy(() => import("./pages/Layanan"));
 
 const Membership = React.lazy(() => import("./pages/Membership"));
 
+const InventoryManagement = React.lazy(() => import("./pages/InventoryManagement"));
+
+const StaffManagement = React.lazy(() => import("./pages/StaffManagement"));
+
 const Components = React.lazy(() => import("./pages/Components"));
 
 const Login = React.lazy(() => import("./pages/auth/Login"));
@@ -44,6 +48,10 @@ export default function App() {
           <Route path="layanan" element={<Layanan />} />
 
           <Route path="membership" element={<Membership />} />
+
+          <Route path="inventory" element={<StaffManagement />} />
+
+          <Route path="staff" element={<InventoryManagement />} />
 
           <Route path="components" element={<Components />} />
 

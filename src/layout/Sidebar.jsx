@@ -8,6 +8,8 @@ import {
   FaUser,
   FaStethoscope,
   FaUserCheck,
+  FaBox,
+  FaUserTie,
 } from "react-icons/fa";
 
 import Container from "../components/layout/Container";
@@ -55,6 +57,16 @@ export default function Sidebar() {
         <NavLink to="/admin/membership" className={menuClass}>
           <FaUserCheck />
           <span>Membership</span>
+        </NavLink>
+
+        <NavLink to="/admin/inventory" className={menuClass}>
+          <FaBox />
+          <span>Inventory</span>
+        </NavLink>
+
+        <NavLink to="/admin/inventory" className={menuClass}>
+          <FaUserTie />
+          <span>Staff</span>
         </NavLink>
       </div>
 
