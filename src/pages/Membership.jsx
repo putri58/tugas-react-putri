@@ -5,39 +5,45 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../components/ui/collapsible"; // Pastikan file collapsible.jsx ada di folder ui Anda
+} from "../components/ui/collapsible"; // Mempertahankan file collapsible komponen Anda
 
 export default function Membership() {
-  // State untuk mengontrol menu mana saja yang sedang terbuka
+  // Mempertahankan state untuk mengontrol menu dropdown admin
   const [openLevel, setOpenLevel] = React.useState(false);
   const [openPoin, setOpenPoin] = React.useState(false);
   const [openReferral, setOpenReferral] = React.useState(false);
   
-  // State bantuan untuk animasi tombol salin kode referral
+  // Mempertahankan state animasi salin token konfigurasi admin
   const [copied, setCopied] = React.useState(false);
 
   const handleCopyReferral = () => {
-    navigator.clipboard.writeText("VET-PUTRI-2026");
+    // Admin menyalin Master API Token / Key Pengaturan Referral untuk integrasi sistem
+    navigator.clipboard.writeText("CONFIG_MASTER_REFERRAL_2026");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
-      {/* Header Menu */}
-      <div className="mb-8">
+      {/* Header Menu Perspektif Admin */}
+      <div className="mb-8 border-b pb-4">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+            Admin Panel
+          </span>
+        </div>
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-2">
-          Program Membership Klinik
+          Manajemen & Konfigurasi Membership
         </h1>
         <p className="text-gray-500 text-sm">
-          Kelola tingkatan keanggotaan, pantau poin reward, dan bagikan kode referral Anda.
+          Pusat kendali pengaturan tiering pasien, validasi penukaran poin *loyalty*, dan monitoring performa kode rujukan global.
         </p>
       </div>
 
       {/* Wrapper Induk Menu */}
       <div className="space-y-4">
         
-        {/* ================= 1. LEVEL MEMBER ================= */}
+        {/* ================= 1. KONTROL LEVEL MEMBER (ADMIN VIEW) ================= */}
         <Collapsible open={openLevel} onOpenChange={setOpenLevel} className="border rounded-xl bg-white shadow-sm overflow-hidden">
           <CollapsibleTrigger asChild>
             <button className="flex items-center justify-between w-full p-5 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
@@ -46,29 +52,47 @@ export default function Membership() {
                   <Crown className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block text-base">Level Member</span>
-                  <span className="text-xs text-amber-600 font-medium">Status saat ini: Gold Member</span>
+                  <span className="block text-base">Master Pengaturan Tiering Member</span>
+                  <span className="text-xs text-amber-600 font-medium">Aktif: 3 Tingkatan Kelas Pasien</span>
                 </div>
               </div>
               <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${openLevel ? "transform rotate-180" : ""}`} />
             </button>
           </CollapsibleTrigger>
           
-          <CollapsibleContent className="p-5 border-t bg-gray-50/50 space-y-3 text-sm text-gray-600">
-            <p>Selamat! Anda berada di tingkat <strong>Gold Member</strong>. Nikmati keuntungan eksklusif di setiap kunjungan anabul Anda.</p>
-            <div className="bg-white p-4 border rounded-lg shadow-sm">
-              <h4 className="font-semibold text-gray-700 mb-2">Benefit Gold Member:</h4>
-              <ul className="list-disc pl-5 space-y-1 text-gray-600">
-                <li>Diskon 10% untuk layanan Pemeriksaan Umum & USG.</li>
-                <li>Prioritas antrean tanpa antre lama via aplikasi.</li>
-                <li>Grooming gratis 1x setiap akumulasi 5x kedatangan.</li>
-              </ul>
+          <CollapsibleContent className="p-5 border-t bg-gray-50/50 space-y-4 text-sm text-gray-600">
+            <p>Berikut adalah distribusi data member terdaftar beserta konfigurasi persentase diskon klinik saat ini:</p>
+            
+            <div className="space-y-3">
+              {/* Data Baris Tier Gold */}
+              <div className="bg-white p-4 border rounded-lg shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-gray-800">1. Gold Member</span>
+                    <span className="bg-amber-100 text-amber-800 text-[11px] font-medium px-2 py-0.5 rounded">142 Pasien Terdaftar</span>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-1">Benefit: Diskon 10% Tindakan & Prioritas Antrean Dokter</p>
+                </div>
+                <Button size="sm" variant="outline" className="text-xs">Ubah Aturan</Button>
+              </div>
+
+              {/* Data Baris Tier Silver */}
+              <div className="bg-white p-4 border rounded-lg shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-gray-800">2. Silver Member</span>
+                    <span className="bg-slate-100 text-slate-800 text-[11px] font-medium px-2 py-0.5 rounded">389 Pasien Terdaftar</span>
+                  </div>
+                  <p className="text-xs text-gray-400 mt-1">Benefit: Diskon 5% Tindakan Medis Umum</p>
+                </div>
+                <Button size="sm" variant="outline" className="text-xs">Ubah Aturan</Button>
+              </div>
             </div>
           </CollapsibleContent>
         </Collapsible>
 
 
-        {/* ================= 2. POIN REWARD ================= */}
+        {/* ================= 2. APPROVAL POIN REWARD (ADMIN VIEW) ================= */}
         <Collapsible open={openPoin} onOpenChange={setOpenPoin} className="border rounded-xl bg-white shadow-sm overflow-hidden">
           <CollapsibleTrigger asChild>
             <button className="flex items-center justify-between w-full p-5 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
@@ -77,8 +101,8 @@ export default function Membership() {
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block text-base">Poin Reward</span>
-                  <span className="text-xs text-emerald-600 font-medium">Total: 1.250 Poin</span>
+                  <span className="block text-base">Antrean Validasi Klaim Poin</span>
+                  <span className="text-xs text-emerald-600 font-medium">Ada 2 Permintaan Butuh Persetujuan</span>
                 </div>
               </div>
               <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${openPoin ? "transform rotate-180" : ""}`} />
@@ -86,29 +110,46 @@ export default function Membership() {
           </CollapsibleTrigger>
           
           <CollapsibleContent className="p-5 border-t bg-gray-50/50 space-y-4 text-sm text-gray-600">
-            <p>Kumpulkan terus poin reward dari setiap transaksi transaksi medis, obat, maupun operasi pengangkatan cyst hewan kesayangan Anda.</p>
+            <p>Pasien di bawah ini telah menekan tombol tukar poin di aplikasi mereka. Mohon lakukan verifikasi fisik sebelum menyetujui:</p>
             
             <div className="grid sm:grid-cols-2 gap-3">
-              <div className="bg-white p-4 border rounded-lg shadow-sm flex justify-between items-center">
+              {/* Item Antrean Approval 1 */}
+              <div className="bg-white p-4 border rounded-lg shadow-sm flex flex-col justify-between space-y-3">
                 <div>
-                  <span className="text-xs text-gray-400 block">Dapat Ditukar</span>
-                  <span className="text-lg font-bold text-gray-800">2x Voucher Grooming</span>
+                  <div className="flex justify-between items-start">
+                    <span className="text-xs font-mono font-bold text-gray-400">ID: #9921</span>
+                    <span className="bg-amber-50 text-amber-700 text-[10px] font-bold px-1.5 py-0.5 rounded">Cost: 500 Pts</span>
+                  </div>
+                  <span className="text-sm font-bold text-gray-800 block mt-1">Klaim: 1x Voucher Grooming</span>
+                  <span className="text-xs text-indigo-600 font-medium block">Pemilik: Budi Santoso (Milo)</span>
                 </div>
-                <Button size="sm" variant="outline">Tukar</Button>
+                <div className="flex gap-2 pt-1">
+                  <Button size="sm" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-8">Setujui</Button>
+                  <Button size="sm" variant="ghost" className="text-xs text-rose-600 hover:bg-rose-50 h-8">Tolak</Button>
+                </div>
               </div>
-              <div className="bg-white p-4 border rounded-lg shadow-sm flex justify-between items-center">
+
+              {/* Item Antrean Approval 2 */}
+              <div className="bg-white p-4 border rounded-lg shadow-sm flex flex-col justify-between space-y-3">
                 <div>
-                  <span className="text-xs text-gray-400 block">Dapat Ditukar</span>
-                  <span className="text-lg font-bold text-gray-800">Potongan Rp 50.000</span>
+                  <div className="flex justify-between items-start">
+                    <span className="text-xs font-mono font-bold text-gray-400">ID: #9925</span>
+                    <span className="bg-amber-50 text-amber-700 text-[10px] font-bold px-1.5 py-0.5 rounded">Cost: 1000 Pts</span>
+                  </div>
+                  <span className="text-sm font-bold text-gray-800 block mt-1">Klaim: Potongan Harga Rp 50.000</span>
+                  <span className="text-xs text-indigo-600 font-medium block">Pemilik: Dian Pertiwi (Chiki)</span>
                 </div>
-                <Button size="sm" variant="outline">Tukar</Button>
+                <div className="flex gap-2 pt-1">
+                  <Button size="sm" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-8">Setujui</Button>
+                  <Button size="sm" variant="ghost" className="text-xs text-rose-600 hover:bg-rose-50 h-8">Tolak</Button>
+                </div>
               </div>
             </div>
           </CollapsibleContent>
         </Collapsible>
 
 
-        {/* ================= 3. REFERRAL ================= */}
+        {/* ================= 3. MONITORING REFERRAL GLOBAL (ADMIN VIEW) ================= */}
         <Collapsible open={openReferral} onOpenChange={setOpenReferral} className="border rounded-xl bg-white shadow-sm overflow-hidden">
           <CollapsibleTrigger asChild>
             <button className="flex items-center justify-between w-full p-5 text-left font-semibold text-gray-800 hover:bg-gray-50 transition-colors">
@@ -117,32 +158,49 @@ export default function Membership() {
                   <Users className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="block text-base">Referral</span>
-                  <span className="text-xs text-gray-400 font-normal">Undang teman & dapatkan komisi poin</span>
+                  <span className="block text-base">Statistik Program Rujukan (Referral)</span>
+                  <span className="text-xs text-gray-400 font-normal">Pantau total akuisisi pasien baru dari mulut ke mulut</span>
                 </div>
               </div>
               <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${openReferral ? "transform rotate-180" : ""}`} />
             </button>
           </CollapsibleTrigger>
           
-          <CollapsibleContent className="p-5 border-t bg-gray-50/50 space-y-3 text-sm text-gray-600">
-            <p>Bagikan kode referral unik Anda kepada sesama pemilik hewan peliharaan. Ketika mereka mendaftar dan berobat pertama kali, Anda berdua akan mendapatkan bonus <strong>200 Poin</strong>!</p>
+          <CollapsibleContent className="p-5 border-t bg-gray-50/50 space-y-4 text-sm text-gray-600">
+            <p>Metrik performa kampanye rujukan antar pemilik hewan sepanjang bulan berjalan ini:</p>
             
-            <div className="bg-white p-3 border rounded-lg flex items-center justify-between max-w-md">
+            {/* Indikator Angka Ringkasan */}
+            <div className="grid grid-cols-3 gap-2 bg-white p-3 border rounded-lg text-center">
               <div>
-                <span className="text-[10px] text-gray-400 block uppercase font-bold tracking-wider">Kode Anda</span>
-                <span className="text-base font-mono font-bold text-indigo-600">VET-PUTRI-2026</span>
+                <span className="block text-[10px] uppercase font-bold text-gray-400">Total Klaim</span>
+                <span className="text-base font-bold text-slate-800">1,420 Kali</span>
               </div>
-              <Button size="sm" variant="ghost" onClick={handleCopyReferral} className="h-9 w-24 gap-1.5">
+              <div className="border-x">
+                <span className="block text-[10px] uppercase font-bold text-gray-400">Pasien Baru</span>
+                <span className="text-base font-bold text-emerald-600">+88 Cat/Dog</span>
+              </div>
+              <div>
+                <span className="block text-[10px] uppercase font-bold text-gray-400">Bonus Keluar</span>
+                <span className="text-base font-bold text-amber-600">17.6k Poin</span>
+              </div>
+            </div>
+
+            {/* Token Rahasia Integrasi API Developer Sistem */}
+            <div className="bg-white p-3 border rounded-lg flex items-center justify-between max-w-full overflow-hidden">
+              <div className="truncate mr-2">
+                <span className="text-[10px] text-gray-400 block uppercase font-bold tracking-wider">Master Webhook Token Config</span>
+                <span className="text-xs font-mono font-bold text-indigo-600 truncate block">CONFIG_MASTER_REFERRAL_2026</span>
+              </div>
+              <Button size="sm" variant="ghost" onClick={handleCopyReferral} className="h-9 w-24 shrink-0 gap-1.5">
                 {copied ? (
                   <>
                     <Check className="w-4 h-4 text-green-600" />
-                    <span className="text-green-600">Tersalin</span>
+                    <span className="text-green-600">Copied</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-4 h-4" />
-                    <span>Salin</span>
+                    <span>Salin Key</span>
                   </>
                 )}
               </Button>

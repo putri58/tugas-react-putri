@@ -1,105 +1,104 @@
 import React from "react";
 import {
   FaPaw,
-  FaPhone,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaStar,
-  FaGift,
-  FaUserMd,
-  FaStethoscope,
-  FaSyringe,
-  FaHospital,
-  FaCut,
+  FaCoins,
+  FaTicketAlt,
   FaCheckCircle,
-  FaArrowRight
+  FaArrowRight,
+  FaUser,
+  FaCalendarAlt,
+  FaHistory,
+  FaHeart,
+  FaWeight,
+  FaSyringe,
+  FaCut,
+  FaClock,
+  FaUserMd,
+  FaExclamationTriangle,
+  FaStore,
+  FaGift
 } from "react-icons/fa";
 
-export default function MemberPage() {
-  // Data membership
-  const memberships = [
-    {
-      name: "Silver",
-      price: "Rp 50.000",
-      period: "/ Tahun",
-      benefits: ["Diskon layanan 5%", "Reminder vaksin", "Promo bulanan"],
-      popular: false,
-      theme: {
-        card: "bg-white border border-slate-200 hover:border-indigo-300",
-        accent: "text-slate-600",
-        priceColor: "text-slate-800",
-        button: "bg-slate-800 hover:bg-slate-900 text-white shadow-md",
-        tag: "hidden"
-      }
-    },
-    {
-      name: "Gold",
-      price: "Rp 150.000",
-      period: "/ Tahun",
-      benefits: [
-        "Diskon layanan 10%",
-        "Prioritas booking",
-        "Voucher ulang tahun hewan",
-        "Loyalty Point 2x",
-      ],
-      popular: true,
-      theme: {
-        card: "bg-white border-2 border-amber-500 relative shadow-xl md:scale-105 z-10 ring-4 ring-amber-500/10",
-        accent: "text-amber-600",
-        priceColor: "text-slate-900",
-        button: "bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/20",
-        tag: "block"
-      }
-    },
-    {
-      name: "Platinum",
-      price: "Rp 300.000",
-      period: "/ Tahun",
-      benefits: [
-        "Diskon layanan 15%",
-        "Check-up gratis tahunan",
-        "Konsultasi prioritas",
-        "Loyalty Point 3x",
-      ],
-      popular: false,
-      theme: {
-        card: "bg-slate-900 text-white border border-slate-800 shadow-xl",
-        accent: "text-indigo-400",
-        priceColor: "text-white",
-        button: "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30",
-        tag: "hidden"
-      }
-    },
+export default function MemberDashboardTopNav() {
+  // 1. Data Dummy Pengguna & Member
+  const memberProfile = {
+    name: "Putri Agustin",
+    email: "budi.santoso@email.com",
+    memberId: "VET-GOLD-8821",
+    tier: "Gold Member",
+    joinDate: "12 Januari 2025",
+    totalPoints: 320,
+    totalSavings: "Rp 145.000",
+  };
+
+  // 2. DATA BARU: Profil Lengkap Anabul (Pet Profile)
+  const petProfile = {
+    name: "Milo",
+    species: "Kucing",
+    breed: "Persia Longhair",
+    age: "1 Tahun 4 Bulan",
+    weight: "4.2 Kg",
+    bloodType: "A",
+    allergies: "Alergi makanan laut (Seafood)",
+    status: "Sangat Sehat (Ideal Weight)"
+  };
+
+  // 3. DATA BARU: Pengingat Jadwal Medis Mendatang (Upcoming Appointment)
+  const upcomingAppointment = {
+    date: "22 Juni 2026",
+    time: "10:00 WIB",
+    activity: "Vaksinasi F4 (Tahunan)",
+    vet: "drh. Sarah Amelia",
+    room: "Ruang Poli A",
+    status: "Terkonfirmasi"
+  };
+
+  // 4. DATA BARU: Toko Penukaran Poin (Point Redemption Shop)
+  const pointRewards = [
+    { id: 1, title: "Snack Creamy Kucing (Isi 4)", pointsNeeded: 50, icon: FaGift, stock: "Tersedia" },
+    { id: 2, title: "Potongan Harga Grooming Rp25rb", pointsNeeded: 120, icon: FaCut, stock: "Tersedia" },
+    { id: 3, title: "Konsultasi Dokter Hewan Gratis", pointsNeeded: 250, icon: FaUserMd, stock: "Tersedia" },
+    { id: 4, title: "Layanan Antar-Jemput Premium", pointsNeeded: 350, icon: FaPaw, stock: "Segera Hadir" },
   ];
 
-  // Data Layanan
-  const services = [
-    { title: "Pemeriksaan Umum", icon: FaStethoscope, desc: "Cek kesehatan berkala oleh dokter hewan berpengalaman." },
-    { title: "Vaksinasi", icon: FaSyringe, desc: "Perlindungan imun komprehensif dari berbagai virus berbahaya." },
-    { title: "Rawat Inap", icon: FaHospital, desc: "Fasilitas observasi intensif 24 jam yang aman dan higienis." },
-    { title: "Grooming", icon: FaCut, desc: "Perawatan kecantikan luar, spa, dan pembersihan kutu/jamur." },
+  // 5. Data Voucher Aktif Milik Member
+  const activeVouchers = [
+    { code: "GOLDGROOM10", title: "Diskon 10% Grooming Premium", expiry: "30 Juni 2026", type: "Grooming" },
+    { code: "VACCINE50K", title: "Potongan Rp 50.000 Vaksin Tahunan", expiry: "15 Juli 2026", type: "Medis" }
   ];
 
-  // ========================================================
-  // BAGIAN ARTIKEL DENGAN GAMBAR ASLI DARI INTERNET
-  // (Kamu bisa ganti URL di bawah ini dengan link hasil copy kamu)
-  // ========================================================
+  // 6. Keuntungan Paket Gold yang Sedang Aktif
+  const currentBenefits = [
+    "Diskon otomatis 10% untuk setiap layanan medis & grooming.",
+    "Prioritas utama saat melakukan booking dokter (tanpa antre lama).",
+    "Layanan Jemput Anabul Gratis (Maksimal radius 5 KM).",
+    "Double Loyalty Point (2x) setiap transaksi kelipatan Kelipatan Rp 10.000."
+  ];
+
+  // 7. Riwayat Pemeriksaan Terakhir Anabul
+  const medicalHistory = [
+    { date: "10 Mei 2026", activity: "Vaksinasi Rabies Booster", vet: "drh. Sarah Amelia", status: "Selesai" },
+    { date: "24 April 2026", activity: "Konsultasi & Pengobatan Jamur", vet: "drh. Rian Hidayat", status: "Selesai" },
+    { date: "05 Maret 2026", activity: "Grooming Sehat & Potong Kuku", vet: "Groomer Aldi", status: "Selesai" },
+  ];
+
+  // 8. DATA ARTIKEL EDUKASI (DENGAN GAMBAR INTERNET)
   const articles = [
     { 
-      title: "Cara Merawat Anak Kucing dengan Benar", 
+      title: "Menu Makanan Diet Terbaik untuk Kucing Obesitas", 
       category: "Kucing", 
       time: "5 Menit Baca", 
       image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=600" 
     },
     { 
-      title: "Jadwal Vaksin Wajib untuk Anjing Kesayangan", 
-      category: "Anjing", 
+      title: "Tanda-Tanda Anabul Mengalami Stres & Cara Mengatasinya", 
+      category: "Psikologi Hewan", 
       time: "4 Menit Baca", 
       image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=600" 
     },
     { 
-      title: "Daftar Makanan yang Berbahaya Bagi Kucing", 
-      category: "Edukasi", 
+      title: "Pentingnya Menjaga Kebersihan Telinga Hewan Peliharaan", 
+      category: "Perawatan", 
       time: "6 Menit Baca", 
       image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&q=80&w=600" 
     },
@@ -107,358 +106,355 @@ export default function MemberPage() {
 
   return (
     <div className="bg-slate-50 min-h-screen font-sans text-slate-700 antialiased scroll-smooth">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+      
+      {/* ─── NAVBAR UTAS (PENGGANTI SIDEBAR) ─── */}
+      <nav className="sticky top-0 z-50 bg-slate-900 border-b border-slate-800 text-white shadow-md">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2 font-bold text-2xl text-indigo-600 tracking-tight">
-            <FaPaw className="rotate-12 text-indigo-500" />
-            <span>VetCare<span className="text-slate-800">CRM</span></span>
+          {/* Logo */}
+          <div className="flex items-center gap-2 font-bold text-2xl tracking-tight">
+            <FaPaw className="rotate-12 text-indigo-400" />
+            <span>VetCare<span className="text-indigo-400">Member</span></span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 text-sm font-semibold">
-            <a href="#home" className="text-slate-600 hover:text-indigo-600 transition-colors">Home</a>
-            <a href="#services" className="text-slate-600 hover:text-indigo-600 transition-colors">Layanan</a>
-            <a href="#membership" className="text-slate-600 hover:text-indigo-600 transition-colors">Membership</a>
-            <a href="#articles" className="text-slate-600 hover:text-indigo-600 transition-colors">Artikel</a>
-            <a href="#contact" className="text-slate-600 hover:text-indigo-600 transition-colors">Kontak</a>
-            <div className="h-4 w-px bg-slate-200"></div>
-            <a href="#login" className="text-slate-600 hover:text-indigo-600 transition-colors">Login</a>
-            <a href="#register" className="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700 transition-all shadow-md shadow-indigo-600/10">Daftar</a>
+          {/* Menu Link Tengah */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300">
+            <a href="#dashboard" className="hover:text-white transition-colors">Ringkasan</a>
+            <a href="#pet-profile" className="hover:text-white transition-colors">Profil Milo</a>
+            <a href="#point-shop" className="hover:text-white transition-colors">Tukar Poin</a>
+            <a href="#vouchers" className="hover:text-white transition-colors">Voucher</a>
+            <a href="#history" className="hover:text-white transition-colors">Riwayat Medis</a>
+            <a href="#articles" className="hover:text-white transition-colors">Edukasi</a>
+          </div>
+
+          {/* User Quick Info Kanan */}
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:block text-right">
+              <p className="text-xs font-bold text-white">{memberProfile.name}</p>
+              <p className="text-[10px] text-amber-400 font-semibold font-mono">{memberProfile.memberId}</p>
+            </div>
+            <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-md border-2 border-slate-700">
+              <FaUser className="text-sm" />
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* HERO SECTION */}
-      <section id="home" className="relative overflow-hidden bg-gradient-to-br from-indigo-700 via-indigo-600 to-blue-700 text-white py-32">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
-          <span className="inline-block bg-white/10 backdrop-blur-md text-indigo-200 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
-            🐾 Solusi Kesehatan Hewan Terbaik
-          </span>
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-            Welcome to VetCare CRM
-          </h1>
-          <p className="text-lg md:text-xl text-indigo-100 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Solusi modern untuk memantau kesehatan hewan peliharaan Anda secara real-time. 
-            Nikmati kemudahan booking online, reward point melimpah, dan pengingat medis otomatis.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#membership" className="w-full sm:w-auto bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-              Lihat Program Membership
-            </a>
-            <a href="#about" className="w-full sm:w-auto border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl font-bold transition-all">
-              Pelajari Lebih Lanjut
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES SECTION */}
-      <section id="services" className="max-w-7xl mx-auto px-6 py-24">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Layanan Medis Unggulan</h2>
-          <p className="text-slate-500">Komitmen kami untuk memberikan kenyamanan dan penanganan medis terbaik bagi anabul kesayangan Anda.</p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((srv) => (
-            <div key={srv.title} className="group bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300">
-              <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 text-2xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-                <srv.icon />
-              </div>
-              <h3 className="font-bold text-xl text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors">{srv.title}</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">{srv.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* MEMBERSHIP SECTION */}
-      <section id="membership" className="bg-slate-100 py-24 border-y border-slate-200/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Pilih Paket Membership Anda</h2>
-            <p className="text-slate-500">Gabung menjadi bagian dari komunitas VIP VetCare dan dapatkan keuntungan eksklusif untuk perawatan harian hingga medis.</p>
+      {/* MAIN CONTAINER */}
+      <main className="max-w-7xl mx-auto px-6 py-10 space-y-8" id="dashboard">
+        
+        {/* ─── BANNER SELAMAT DATANG (HERO STYLE) ─── */}
+        <section className="relative overflow-hidden bg-gradient-to-r from-indigo-900 via-slate-900 to-indigo-950 text-white rounded-3xl p-8 shadow-xl">
+          <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 opacity-5 text-[15rem] pointer-events-none"><FaPaw /></div>
+          <div className="max-w-3xl space-y-3">
+            <span className="inline-flex items-center gap-1.5 bg-amber-500 text-slate-900 font-bold px-3 py-1 rounded-full text-[10px] uppercase tracking-wider shadow-md">
+              👑 PROFIL MEMBER {memberProfile.tier}
+            </span>
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight">Selamat Datang Kembali, {memberProfile.name}! 🐾</h1>
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+              Portal internal Anda telah siap. Seluruh jadwal vaksinasi, histori medis, dan tabungan diskon untuk anabul kesayangan terpantau secara otomatis di sini.
+            </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
-            {memberships.map((member) => (
-              <div
-                key={member.name}
-                className={`flex flex-col justify-between rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${member.theme.card}`}
-              >
-                <div>
-                  <div className={`absolute -top-4 left-1/2 transform -translate-x-1/2 rounded-full px-4 py-1 text-xs font-bold uppercase tracking-wider shadow-sm ${member.theme.tag}`}>
-                    Paling Populer ⭐
-                  </div>
-
-                  <h3 className="text-2xl font-bold mb-2 tracking-tight">{member.name}</h3>
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className={`text-3xl font-extrabold ${member.theme.priceColor}`}>{member.price}</span>
-                    <span className="text-slate-400 text-sm font-medium">{member.period}</span>
-                  </div>
-
-                  <hr className="border-slate-200/50 my-5" />
-
-                  <ul className="space-y-4">
-                    {member.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-start gap-3 text-sm">
-                        <FaCheckCircle className={`text-base shrink-0 mt-0.5 ${member.theme.accent}`} />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <button className={`w-full mt-8 py-3.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all ${member.theme.button}`}>
-                  Pilih Paket {member.name}
-                </button>
-              </div>
-            ))}
+          {/* Alert Khusus Catatan Alergi */}
+          <div className="mt-6 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-start gap-3 max-w-2xl text-xs text-amber-300">
+            <FaExclamationTriangle className="shrink-0 mt-0.5 text-base text-amber-400" />
+            <p><strong>Catatan Dokter Terakhir:</strong> Harap awasi diet harian {petProfile.name}. Pastikan pihak keluarga tidak memberikan camilan mengandung seafood karena riwayat hipersensitivitas.</p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* LOYALTY SECTION */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="relative overflow-hidden bg-white rounded-3xl border border-slate-100 shadow-xl p-8 md:p-12">
-            <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-40 h-40 bg-indigo-50 rounded-full blur-2xl opacity-60"></div>
+        {/* ─── GRID BARIS 1: KARTU DIGITAL & PROFIL ANABUL LENGKAP ─── */}
+        <section className="grid lg:grid-cols-5 gap-6 items-stretch">
+          
+          {/* 1. KARTU DIGITAL MEMBER (2 Kolom) */}
+          <div className="lg:col-span-2 relative overflow-hidden bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 text-slate-900 rounded-3xl p-6 shadow-xl flex flex-col justify-between min-h-[220px]">
+            <div className="absolute right-0 bottom-0 translate-x-6 translate-y-6 opacity-10 text-9xl pointer-events-none"><FaPaw /></div>
             
-            <div className="flex flex-col sm:flex-row items-center gap-5 mb-8 border-b border-slate-100 pb-6">
-              <div className="w-16 h-16 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-3xl shadow-sm">
-                <FaGift />
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] uppercase tracking-widest font-extrabold text-amber-950/70">Digital VIP Card</p>
+                <h2 className="text-xl font-black tracking-wide text-white mt-0.5">{memberProfile.name}</h2>
               </div>
-              <div className="text-center sm:text-left">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Loyalty Point Program</h2>
-                <p className="text-slate-400 text-sm">Kumpulkan poin di setiap transaksi dan tukar dengan voucher menarik!</p>
-              </div>
+              <FaPaw className="text-3xl text-white/90 drop-shadow" />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-10">
-              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">🪙 Cara Mendapatkan Poin</h3>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex justify-between border-b border-slate-200/60 pb-2"><span>Setiap Kelipatan Rp10.000</span> <strong className="text-indigo-600">+1 Point</strong></li>
-                  <li className="flex justify-between border-b border-slate-200/60 pb-2"><span>Gold Member Bonus</span> <strong className="text-amber-600">2x Lipat Poin</strong></li>
-                  <li className="flex justify-between"><span>Platinum Member Bonus</span> <strong className="text-indigo-500">3x Lipat Poin</strong></li>
-                </ul>
-              </div>
+            <div className="mt-8">
+              <p className="text-[9px] uppercase font-bold text-amber-950/60 tracking-wider">ID Registrasi Member</p>
+              <p className="font-mono text-xl font-bold tracking-widest text-white">{memberProfile.memberId}</p>
+              <p className="text-xs font-semibold text-amber-950/90 mt-1">🐱 Nama Anabul Utama: {petProfile.name}</p>
+            </div>
 
-              <div className="bg-indigo-900/5 p-6 rounded-2xl border border-indigo-900/5">
-                <h3 className="font-bold text-indigo-950 mb-4 flex items-center gap-2">🎁 Reward Spesial</h3>
-                <ul className="space-y-3 text-sm text-slate-700">
-                  <li className="flex justify-between border-b border-indigo-900/10 pb-2"><span>100 Point</span> <strong>Voucher Rp10.000</strong></li>
-                  <li className="flex justify-between border-b border-indigo-900/10 pb-2"><span>300 Point</span> <strong>Voucher Rp35.000</strong></li>
-                  <li className="flex justify-between"><span>500 Point</span> <strong className="text-indigo-600">Voucher Rp75.000</strong></li>
-                </ul>
-              </div>
+            <div className="flex justify-between items-center border-t border-white/20 pt-4 mt-4 text-xs font-medium text-amber-950/70">
+              <span>Masa Aktif: Seumur Hidup</span>
+              <span className="bg-slate-900 text-amber-400 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider">GOLD TIER</span>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ARTICLES SECTION (SUDAH MENGGUNAKAN GAMBAR) */}
-      <section id="articles" className="bg-slate-100 py-24 border-t border-slate-200/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center mb-12 gap-4">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-2">Artikel & Edukasi Hewan</h2>
-              <p className="text-slate-500 text-sm">Wawasan esensial dari tim medis kami untuk kebahagiaan anabul Anda.</p>
+          {/* 2. PROFIL ANABUL MILO (3 Kolom) */}
+          <div id="pet-profile" className="lg:col-span-3 bg-white border border-slate-200 p-6 rounded-3xl shadow-sm space-y-4">
+            <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+              <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                🐱 Informasi Detail Pasien ({petProfile.name})
+              </h3>
+              <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold px-2.5 py-0.5 rounded-md text-[11px] uppercase">{petProfile.status}</span>
             </div>
-            <button className="text-indigo-600 font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm bg-white px-5 py-2.5 rounded-xl shadow-sm border border-slate-200/60">
-              Lihat Semua Artikel <FaArrowRight className="text-xs" />
+            
+            <div className="grid sm:grid-cols-2 gap-4 text-sm font-medium">
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <span className="text-xs text-slate-400 block mb-0.5">Spesies & Ras</span>
+                <span className="text-slate-800 font-bold">{petProfile.species} ({petProfile.breed})</span>
+              </div>
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <span className="text-xs text-slate-400 block mb-0.5">Umur Terhitung</span>
+                <span className="text-slate-800 font-bold">{petProfile.age}</span>
+              </div>
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 flex items-center justify-between">
+                <div>
+                  <span className="text-xs text-slate-400 block mb-0.5">Berat Badan Terakhir</span>
+                  <span className="text-slate-800 font-bold">{petProfile.weight}</span>
+                </div>
+                <FaWeight className="text-slate-300 text-lg" />
+              </div>
+              <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                <span className="text-xs text-slate-400 block mb-0.5">Golongan Darah</span>
+                <span className="text-slate-800 font-bold">{petProfile.bloodType}</span>
+              </div>
+            </div>
+            <div className="bg-rose-50 border border-rose-100 text-rose-800 p-3 rounded-xl text-xs font-semibold">
+              ⚠️ Alergi Terdaftar: {petProfile.allergies}
+            </div>
+          </div>
+
+        </section>
+
+        {/* ─── GRID BARIS 2: LOYALTY STATS & REMINDER JADWAL MEDIS ─── */}
+        <section className="grid lg:grid-cols-3 gap-6 items-stretch">
+          
+          {/* COUNTER POIN */}
+          <div className="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm flex flex-col justify-between">
+            <div>
+              <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Total Koin Loyalty</p>
+              <h3 className="text-4xl font-black text-slate-800 mt-2 flex items-center gap-2">
+                <FaCoins className="text-amber-500 text-3xl" /> {memberProfile.totalPoints} 
+                <span className="text-xs font-medium text-slate-400">Poin Aktif</span>
+              </h3>
+            </div>
+            <p className="text-[11px] text-slate-500 border-t border-slate-100 pt-3 mt-4">
+              Koin dikumpulkan otomatis dari transaksi klinik. Anda bisa menukarnya langsung pada katalog di bawah ini.
+            </p>
+          </div>
+
+          {/* TOTAL SAVINGS */}
+          <div className="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm flex flex-col justify-between">
+            <div>
+              <p className="text-slate-400 text-xs font-bold uppercase tracking-wider">Akumulasi Penghematan</p>
+              <h3 className="text-4xl font-black text-emerald-600 mt-2">{memberProfile.totalSavings}</h3>
+              <p className="text-xs text-slate-400 font-medium mt-1">Total potongan harga yang telah dinikmati.</p>
+            </div>
+            <div className="text-[11px] text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-100 font-semibold flex items-center gap-1 mt-4">
+              <FaCheckCircle className="text-xs" /> Diskon otomatis member aktif 10%.
+            </div>
+          </div>
+
+          {/* REMINDER JADWAL BOOKING MEDIS (UPCOMING APPOINTMENT) */}
+          <div className="bg-slate-900 text-white p-6 rounded-3xl shadow-xl flex flex-col justify-between relative overflow-hidden border border-slate-800">
+            <div className="absolute right-0 top-0 translate-x-4 -translate-y-4 opacity-10 text-7xl"><FaCalendarAlt /></div>
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-[10px] bg-indigo-600 text-white font-extrabold px-2.5 py-0.5 rounded-md uppercase tracking-wider flex items-center gap-1">
+                  <FaClock /> Jadwal Terdekat
+                </span>
+                <span className="text-emerald-400 text-xs font-bold">{upcomingAppointment.status}</span>
+              </div>
+              <h4 className="font-bold text-base text-white">{upcomingAppointment.activity}</h4>
+              <p className="text-xs text-slate-400 mt-0.5">{upcomingAppointment.vet} • {upcomingAppointment.room}</p>
+            </div>
+            
+            <div className="border-t border-slate-800 pt-3 mt-4 flex items-center justify-between text-xs font-mono font-bold text-indigo-300">
+              <span>📅 {upcomingAppointment.date}</span>
+              <span>⏰ {upcomingAppointment.time}</span>
+            </div>
+          </div>
+
+        </section>
+
+        {/* ─── DATA BARU: KATALOG REDEEM COIN MARKETPLACE ─── */}
+        <section id="point-shop" className="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm space-y-4">
+          <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+            <FaStore className="text-indigo-500 text-xl" />
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">Katalog Penukaran Koin Member</h3>
+              <p className="text-xs text-slate-400">Tukarkan saldo koin Anda dengan reward instan menarik di bawah.</p>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {pointRewards.map((reward) => {
+              const canRedeem = memberProfile.totalPoints >= reward.pointsNeeded;
+              return (
+                <div key={reward.id} className="border border-slate-100 rounded-2xl p-4 bg-slate-50/50 flex flex-col justify-between space-y-4 hover:border-indigo-200 transition-colors">
+                  <div className="space-y-2">
+                    <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-lg shadow-inner">
+                      <reward.icon />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm text-slate-800 leading-snug">{reward.title}</h4>
+                      <span className="text-[10px] text-slate-400 font-medium">Status stok: {reward.stock}</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-xs font-black text-amber-600 font-mono flex items-center gap-1">
+                      🪙 {reward.pointsNeeded} Pts
+                    </span>
+                    <button 
+                      disabled={!canRedeem}
+                      className={`text-[11px] font-bold px-3 py-1.5 rounded-lg transition-all ${
+                        canRedeem 
+                        ? "bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm" 
+                        : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                      }`}
+                    >
+                      {canRedeem ? "Klaim Hadiah" : "Poin Kurang"}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ─── GRID BARIS 3: BENEFIT PAKET & VOUCHER KUPON ─── */}
+        <section className="grid md:grid-cols-2 gap-6">
+          
+          {/* LIST KEUNTUNGAN PAKET */}
+          <div className="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm">
+            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+              🌟 Hak Eksklusif Keanggotaan Gold Anda
+            </h3>
+            <ul className="space-y-3">
+              {currentBenefits.map((benefit, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm bg-slate-50 p-3 rounded-xl border border-slate-100">
+                  <FaCheckCircle className="text-amber-500 text-base shrink-0 mt-0.5" />
+                  <span className="text-slate-600 leading-relaxed font-medium">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* VOUCHER SAYA */}
+          <div id="vouchers" className="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm space-y-4">
+            <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+              🎁 Kupon Voucher Aktif Tersimpan
+            </h3>
+            <div className="space-y-3">
+              {activeVouchers.map((vch) => (
+                <div key={vch.code} className="flex border border-dashed border-indigo-300 rounded-2xl overflow-hidden bg-indigo-50/30 hover:bg-indigo-50 transition-colors">
+                  <div className="bg-indigo-600 text-white p-4 flex flex-col justify-center items-center shrink-0 w-24 border-r border-dashed border-indigo-300">
+                    <FaTicketAlt className="text-xl mb-1" />
+                    <span className="text-[10px] font-mono tracking-wider bg-white/20 px-1.5 py-0.5 rounded font-bold">{vch.type}</span>
+                  </div>
+                  <div className="p-4 flex flex-col justify-between flex-1">
+                    <div>
+                      <h4 className="font-bold text-sm text-slate-800 leading-tight">{vch.title}</h4>
+                      <p className="text-[11px] text-slate-400 mt-1 font-mono">Kode: <span className="font-bold text-indigo-600 bg-indigo-100 px-1.5 py-0.5 rounded">{vch.code}</span></p>
+                    </div>
+                    <p className="text-[10px] text-rose-500 font-semibold mt-2 flex items-center gap-1">
+                      <FaCalendarAlt /> Berlaku s/d {vch.expiry}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </section>
+
+        {/* ─── BARIS 4: TABEL RIWAYAT MEDIS ANABUL ─── */}
+        <section id="history" className="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm">
+          <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <FaHistory className="text-slate-400" /> Histori Rekam Medis & Tindakan Terakhir Milo
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50 text-slate-400 font-bold border-b border-slate-100">
+                  <th className="p-3">Tanggal Tindakan</th>
+                  <th className="p-3">Jenis Pelayanan / Keluhan</th>
+                  <th className="p-3">Dokter / Petugas Medis</th>
+                  <th className="p-3 text-center">Status Berkas</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-medium">
+                {medicalHistory.map((hist, i) => (
+                  <tr key={i} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="p-3 text-slate-500 font-mono">{hist.date}</td>
+                    <td className="p-3 text-slate-800 font-bold">{hist.activity}</td>
+                    <td className="p-3 text-slate-600">{hist.vet}</td>
+                    <td className="p-3 text-center">
+                      <span className="bg-emerald-100 text-emerald-700 text-xs px-2.5 py-1 rounded-full font-bold">
+                        {hist.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* ─── BARIS 5: EDUKASI ARTIKEL BERGAMBAR DARI INTERNET ─── */}
+        <section id="articles" className="space-y-6 pt-4">
+          <div className="flex justify-between items-end">
+            <div>
+              <h2 className="text-2xl font-black text-slate-900 tracking-tight">📚 Artikel Kesehatan Khusus Member VIP</h2>
+              <p className="text-slate-400 text-xs mt-1">Tips penting yang dikurasi berkala oleh dokter spesialis VetCare.</p>
+            </div>
+            <button className="text-indigo-600 font-bold flex items-center gap-1.5 hover:gap-2.5 transition-all text-xs bg-white border border-slate-200 px-4 py-2 rounded-xl shadow-sm shrink-0">
+              Lihat Semua <FaArrowRight className="text-[10px]" />
             </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {articles.map((art) => (
-              <div key={art.title} className="group bg-white rounded-3xl shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col justify-between">
+              <div key={art.title} className="group bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl overflow-hidden transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  {/* Container Gambar */}
-                  <div className="h-48 relative overflow-hidden bg-slate-200">
+                  {/* GAMBAR DARI INTERNET */}
+                  <div className="h-44 relative overflow-hidden bg-slate-200">
                     <img 
                       src={art.image} 
                       alt={art.title} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    {/* Tag Kategori Melayang di Atas Gambar */}
-                    <span className="absolute top-4 left-4 bg-slate-900/70 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                    <span className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
                       {art.category}
                     </span>
                   </div>
 
-                  <div className="p-6">
-                    <span className="text-slate-400 text-xs font-semibold">{art.time}</span>
-                    <h3 className="font-bold text-lg text-slate-800 mt-1 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                  <div className="p-5">
+                    <span className="text-slate-400 text-[11px] font-bold uppercase tracking-wider">{art.time}</span>
+                    <h3 className="font-bold text-base text-slate-800 mt-1 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">
                       {art.title}
                     </h3>
                   </div>
                 </div>
 
-                <div className="p-6 pt-0">
-                  <button className="text-indigo-600 hover:text-indigo-700 text-sm font-bold inline-flex items-center gap-1.5 group/btn">
-                    Baca Selengkapnya 
-                    <FaArrowRight className="text-xs transform group-hover/btn:translate-x-1 transition-transform" />
+                <div className="p-5 pt-0">
+                  <button className="text-indigo-600 hover:text-indigo-700 text-xs font-bold inline-flex items-center gap-1 group/btn">
+                    Mulai Membaca 
+                    <FaArrowRight className="text-[10px] transform group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ABOUT SECTION */}
-      <section id="about" className="py-24 max-w-4xl mx-auto px-6 text-center relative">
-        <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-8 shadow-inner">
-          <FaUserMd />
-        </div>
-        <h2 className="text-3xl font-bold text-slate-900 mb-6 tracking-tight">Tentang Sistem VetCare CRM</h2>
-        <p className="text-slate-500 text-lg leading-relaxed max-w-2xl mx-auto">
-          VetCare berkomitmen mengawinkan dunia medis veteriner dengan kenyamanan digital. 
-          Platform CRM terintegrasi ini menjamin rekam medis anabul Anda terpantau harmonis.
-        </p>
-      </section>
+      </main>
 
-      {/* TESTIMONI SECTION */}
-      <section className="bg-white py-24 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">Apa Kata Mereka?</h2>
-            <p className="text-slate-400 text-sm">Testimoni nyata dari para pet parents.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { text: "Pelayanan medis sangat ramah, dokternya komunikatif sekali saat anabul saya harus rawat inap.", user: "Siti R. - Pemilik Kucing" },
-              { text: "Sistem pengingat otomatis di WhatsApp ngebantu banget biar anjing saya gak kelewat jadwal vaksin.", user: "Budi T. - Pemilik Siberian Husky" },
-              { text: "Suka banget sama program loyalty point-nya, sering dapet potongan harga lumayan.", user: "Amalia - Pemilik Persi" }
-            ].map((testi, i) => (
-              <div key={i} className="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col justify-between">
-                <div>
-                  <div className="flex text-amber-400 gap-1 mb-4 text-sm">
-                    {[...Array(5)].map((_, idx) => <FaStar key={idx} />)}
-                  </div>
-                  <p className="text-slate-600 italic text-sm leading-relaxed">"{testi.text}"</p>
-                </div>
-                <h4 className="mt-6 text-xs font-bold uppercase tracking-wider text-slate-400">— {testi.user}</h4>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT SECTION */}
-      <section id="contact" className="bg-slate-100 py-24 border-t border-slate-200/50">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center text-slate-900 mb-12">Hubungi Tim Layanan Kami</h2>
-
-          <div className="grid lg:grid-cols-5 gap-8 items-stretch">
-            <div className="bg-white rounded-3xl shadow-sm p-8 lg:col-span-3 border border-slate-200/60">
-              <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                <input className="w-full border border-slate-200 bg-slate-50 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm" placeholder="Nama Lengkap" />
-                <input className="w-full border border-slate-200 bg-slate-50 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm" placeholder="Alamat Email" type="email" />
-              </div>
-              <textarea rows="4" className="w-full border border-slate-200 bg-slate-50 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm resize-none" placeholder="Tulis pesan atau keluhan medis umum di sini..."></textarea>
-              <button className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md shadow-indigo-600/10 transition-colors w-full sm:w-auto text-sm">
-                Kirim Pesan Sekarang
-              </button>
-            </div>
-
-            <div className="bg-slate-900 text-white rounded-3xl p-8 lg:col-span-2 flex flex-col justify-center space-y-6 shadow-xl">
-              <div className="flex gap-4 items-center">
-                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-indigo-400"><FaPhone /></div>
-                <div><p className="text-xs text-slate-400">Hubungi Kami</p><p className="text-sm font-semibold">0812-3456-7890</p></div>
-              </div>
-              <div className="flex gap-4 items-center">
-                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-indigo-400"><FaEnvelope /></div>
-                <div><p className="text-xs text-slate-400">Email Resmi</p><p className="text-sm font-semibold">info@vetcare.com</p></div>
-              </div>
-              <div className="flex gap-4 items-center">
-                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-indigo-400"><FaMapMarkerAlt /></div>
-                <div><p className="text-xs text-slate-400">Lokasi Klinik</p><p className="text-sm font-semibold">Pekanbaru, Riau</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* LOGIN SECTION */}
-      <section id="login" className="py-24 bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-950 text-white border-b border-slate-800">
-        <div className="max-w-md mx-auto px-6">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold tracking-tight mb-2">Masuk Dashboard Member</h2>
-            <p className="text-slate-400 text-sm">Akses dashboard monitoring rekam medis peliharaan Anda.</p>
-          </div>
-          
-          <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
-            <div className="space-y-4">
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Alamat Email</label>
-                <input type="email" placeholder="contoh@email.com" className="w-full bg-white/5 border border-white/10 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all text-sm text-white placeholder-slate-500" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Kata Sandi</label>
-                <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all text-sm text-white placeholder-slate-500" />
-              </div>
-              <div className="text-right">
-                <a href="#login" className="text-xs text-indigo-400 hover:underline">Lupa kata sandi?</a>
-              </div>
-              <button className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 rounded-xl transition-colors text-sm shadow-lg shadow-indigo-600/20 mt-2">
-                Masuk Sekarang
-              </button>
-            </div>
-            <p className="text-center text-xs text-slate-400 mt-6">
-              Belum punya akun? <a href="#register" className="text-indigo-400 font-medium hover:underline">Daftar di bawah</a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* REGISTER SECTION */}
-      <section id="register" className="py-24 bg-slate-100">
-        <div className="max-w-lg mx-auto px-6">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-slate-900 tracking-tight mb-2">Registrasi Member Baru</h2>
-            <p className="text-slate-500 text-sm">Bergabung dan nikmati benefit instan serta point rewards dari VetCare CRM.</p>
-          </div>
-
-          <div className="bg-white text-slate-800 p-8 rounded-3xl border border-slate-200 shadow-xl">
-            <div className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nama Lengkap</label>
-                  <input placeholder="John Doe" className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm" />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nomor HP / WhatsApp</label>
-                  <input placeholder="0812345678xx" className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm" />
-                </div>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Alamat Email Aktif</label>
-                <input placeholder="nama@email.com" type="email" className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm" />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Buat Kata Sandi Baru</label>
-                <input placeholder="Minimal 8 karakter" type="password" className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm" />
-              </div>
-              
-              <div className="flex items-start gap-2 py-2">
-                <input type="checkbox" id="terms" className="mt-1 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500" />
-                <label htmlFor="terms" className="text-xs text-slate-500 leading-tight">Saya menyetujui Syarat & Ketentuan serta Kebijakan Privasi yang berlaku di VetCare CRM.</label>
-              </div>
-
-              <button className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-bold py-3.5 rounded-xl transition-all text-sm shadow-md shadow-indigo-600/10">
-                Daftar & Ambil Keuntungan
-              </button>
-            </div>
-            <p className="text-center text-xs text-slate-500 mt-6">
-              Sudah memiliki akun? <a href="#login" className="text-indigo-600 font-medium hover:underline">Masuk ke dashboard</a>
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* FOOTER */}
+      <footer className="bg-slate-900 text-slate-500 text-xs text-center py-8 border-t border-slate-800 mt-20">
+        <p>© 2026 VetCare CRM Platform. All Rights Reserved. Terintegrasi Layanan Klinik Hewan Berlisensi.</p>
+      </footer>
     </div>
   );
 }
