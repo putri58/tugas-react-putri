@@ -64,7 +64,7 @@ export default function Sidebar() {
           <span>Inventory</span>
         </NavLink>
 
-        <NavLink to="/admin/inventory" className={menuClass}>
+        <NavLink to="/admin/staff" className={menuClass}>
           <FaUserTie />
           <span>Staff</span>
         </NavLink>

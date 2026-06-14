@@ -49,9 +49,9 @@ export default function App() {
 
           <Route path="membership" element={<Membership />} />
 
-          <Route path="inventory" element={<StaffManagement />} />
+          <Route path="inventory" element={<InventoryManagement />} />
 
-          <Route path="staff" element={<InventoryManagement />} />
+          <Route path="staff" element={<StaffManagement />} />
 
           <Route path="components" element={<Components />} />
 
