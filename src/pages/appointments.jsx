@@ -11,6 +11,34 @@ import AppointmentSection from "../components/section/AppointmentSection";
 export default function Appointments() {
   const [darkMode, setDarkMode] = useState(false);
 
+  const [upcomingAppointments, setUpcomingAppointments] = useState([
+    {
+      id: 1,
+      title: "Bella Vaccination",
+      date: "Thursday, October 14",
+    },
+    {
+      id: 2,
+      title: "Milo Surgery",
+      date: "Monday, November 2",
+    },
+  ]);
+
+  const [emergencyCases, setEmergencyCases] = useState([
+    {
+      id: 1,
+      title: "Rocky Emergency",
+      room: "Surgery Room 3",
+    },
+    {
+      id: 2,
+      title: "Luna Observation",
+      room: "Observation Room",
+    },
+  ]);
+
+  const [selectedMonth, setSelectedMonth] = useState("OCTOBER")
+
   const days = [
     "MONDAY",
     "TUESDAY",
@@ -98,7 +126,9 @@ export default function Appointments() {
         <div className="flex items-center gap-2">
           <Button type="danger">+</Button>
           <div
-            className={`flex border rounded-lg overflow-hidden text-[10px] font-bold ${darkMode ? "border-gray-700" : "border-gray-200"}`}
+            className={`flex border rounded-lg overflow-hidden text-[10px] font-bold ${
+              darkMode ? "border-gray-700" : "border-gray-200"
+            }`}
           >
             <button className="px-4 py-2 border-r border-inherit hover:bg-gray-100 transition-colors">
               DAY
@@ -106,18 +136,26 @@ export default function Appointments() {
             <button className="px-4 py-2 border-r border-inherit hover:bg-gray-100 transition-colors">
               WEEK
             </button>
-            <button className="px-4 py-2 bg-rose-500 text-white">MONTH</button>
+            <button className="px-4 py-2 bg-rose-500 text-white">
+              MONTH
+            </button>
           </div>
         </div>
       </div>
 
       {/* Calendar Grid */}
       <div
-        className={`border rounded-2xl overflow-hidden shadow-sm ${darkMode ? "border-gray-800" : "border-gray-200"}`}
+        className={`border rounded-2xl overflow-hidden shadow-sm ${
+          darkMode ? "border-gray-800" : "border-gray-200"
+        }`}
       >
         {/* Days Header */}
         <div
-          className={`grid grid-cols-7 border-b ${darkMode ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200"}`}
+          className={`grid grid-cols-7 border-b ${
+            darkMode
+              ? "bg-gray-900 border-gray-800"
+              : "bg-white border-gray-200"
+          }`}
         >
           {days.map((day) => (
             <div
@@ -131,7 +169,9 @@ export default function Appointments() {
 
         {/* Grid Cells */}
         <div
-          className={`grid grid-cols-7 ${darkMode ? "bg-gray-800" : "bg-gray-50"}`}
+          className={`grid grid-cols-7 ${
+            darkMode ? "bg-gray-800" : "bg-gray-50"
+          }`}
         >
           {calendarDays.map((item, idx) => (
             <CalendarCell key={idx} item={item} darkMode={darkMode}>
@@ -158,90 +198,63 @@ export default function Appointments() {
       </div>
 
       {/* Appointment Section */}
-<div className="grid grid-cols-2 gap-5 mt-8">
+      <div className="grid grid-cols-2 gap-5 mt-8">
+        <AppointmentSection title="Upcoming Appointments">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-yellow-200"></div>
 
-  <AppointmentSection title="Upcoming Appointments">
+              <div>
+                <h1 className="font-bold text-sm">Bella Vaccination</h1>
 
-    <div className="space-y-4">
+                <p className="text-xs text-gray-400">
+                  Thursday, October 14
+                </p>
+              </div>
+            </div>
 
-      <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-blue-200"></div>
 
-        <div className="w-10 h-10 rounded-full bg-yellow-200"></div>
+              <div>
+                <h1 className="font-bold text-sm">Milo Surgery</h1>
 
-        <div>
-          <h1 className="font-bold text-sm">
-            Bella Vaccination
-          </h1>
+                <p className="text-xs text-gray-400">
+                  Monday, November 2
+                </p>
+              </div>
+            </div>
+          </div>
+        </AppointmentSection>
 
-          <p className="text-xs text-gray-400">
-            Thursday, October 14
-          </p>
-        </div>
+        <AppointmentSection title="Emergency Cases">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-red-200"></div>
 
+              <div>
+                <h1 className="font-bold text-sm">Rocky Emergency</h1>
+
+                <p className="text-xs text-gray-400">
+                  Surgery Room 3
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-pink-200"></div>
+
+              <div>
+                <h1 className="font-bold text-sm">Luna Observation</h1>
+
+                <p className="text-xs text-gray-400">
+                  Observation Room
+                </p>
+              </div>
+            </div>
+          </div>
+        </AppointmentSection>
       </div>
-
-      <div className="flex items-center gap-3">
-
-        <div className="w-10 h-10 rounded-full bg-blue-200"></div>
-
-        <div>
-          <h1 className="font-bold text-sm">
-            Milo Surgery
-          </h1>
-
-          <p className="text-xs text-gray-400">
-            Monday, November 2
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </AppointmentSection>
-
-  <AppointmentSection title="Emergency Cases">
-
-    <div className="space-y-4">
-
-      <div className="flex items-center gap-3">
-
-        <div className="w-10 h-10 rounded-full bg-red-200"></div>
-
-        <div>
-          <h1 className="font-bold text-sm">
-            Rocky Emergency
-          </h1>
-
-          <p className="text-xs text-gray-400">
-            Surgery Room 3
-          </p>
-        </div>
-
-      </div>
-
-      <div className="flex items-center gap-3">
-
-        <div className="w-10 h-10 rounded-full bg-pink-200"></div>
-
-        <div>
-          <h1 className="font-bold text-sm">
-            Luna Observation
-          </h1>
-
-          <p className="text-xs text-gray-400">
-            Observation Room
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </AppointmentSection>
-
-</div>
-      
     </Container>
   );
 }
