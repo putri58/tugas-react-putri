@@ -1,16 +1,16 @@
-import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { BsFillExclamationDiamondFill } from "react-icons/bs";
-import { ImSpinner2 } from "react-icons/im";
-import { IoCloseOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom"; 
+import { loginAPI } from "../../services/LoginApi";
 
 export default function Login() {
-
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  
+  // STATE BARU: Untuk mengatur efek animasi menghilang (fade out)
+  const [isExiting, setIsExiting] = useState(false);
 
   const [dataForm, setDataForm] = useState({
     username: "",
@@ -19,7 +19,6 @@ export default function Login() {
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-
     setDataForm({
       ...dataForm,
       [name]: value,
@@ -29,118 +28,87 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setLoading(true);
-    setError("");
+    try {
+      setLoading(true);
+      setError("");
+      setSuccess("");
 
-    axios
-      .post("https://dummyjson.com/user/login", {
-        username: dataForm.username,
-        password: dataForm.password,
-      })
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
-        navigate("/");
-      })
-      .catch((err) => {
-        setError(err.response?.data?.message || "Login failed");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      const user = await loginAPI.loginUser(dataForm.username, dataForm.password);
+
+      if (user.length > 0) {
+        setSuccess(`Selamat datang kembali, ${user[0].username}! Login Berhasil.`);
+        localStorage.setItem("user_session", JSON.stringify(user[0]));
+        setDataForm({ username: "", password: "" });
+
+        // 1. Jalankan animasi "Fade Out" (menghilang perlahan) setelah 1 detik
+        setTimeout(() => {
+          setIsExiting(true);
+        }, 1000);
+
+        // 2. Berpindah halaman setelah animasi menghilang selesai (total 1.5 detik)
+        setTimeout(() => {
+          navigate("/admin");
+        }, 1500);
+
+      } else {
+        setError("Username atau Password salah! Akun tidak ditemukan.");
+      }
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || err.message;
+      setError(`Login Gagal: ${errorMsg}`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-[#1b12c9] flex items-center justify-center relative px-4">
+    // DI SINI KUNCINYA: Kita pasang class transition & opacity berdasarkan state isExiting
+    <div className={`transition-all duration-500 ease-in-out ${isExiting ? "opacity-0 scale-95 blur-sm" : "opacity-100 scale-100 blur-none"}`}>
+      <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md">
+        <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Login Account</h1>
 
-      {/* Close Button */}
-      <button className="absolute top-10 text-white border border-white rounded-full p-2">
-        <IoCloseOutline size={22} />
-      </button>
-
-      {/* Form Box */}
-      <div className="bg-[#f5f5f5] w-full max-w-md rounded-[30px] px-10 py-12">
-
-
-
-        {/* Title */}
-        <h2 className="text-center text-[20px] font-bold text-gray-800 mb-8">
-          Login
-        </h2>
-
-        {/* Error */}
         {error && (
-          <div className="flex items-center gap-2 bg-red-100 border border-red-300 text-red-600 text-sm p-3 rounded-xl mb-5">
-            <BsFillExclamationDiamondFill />
+          <div className="p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-2xl animate-pulse">
             {error}
           </div>
         )}
 
+        {success && (
+          <div className="p-4 mb-4 text-sm text-green-800 bg-green-100 rounded-2xl">
+            {success}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-5">
+          <input
+            type="text"
+            name="username"           
+            value={dataForm.username} 
+            onChange={handleChange}   
+            placeholder="Username"
+            required
+            disabled={loading}        
+            className="w-full bg-[#f4f7fe] p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#5b5ce2]"
+          />
 
-          {/* Username */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-2">
-              Username
-            </label>
+          <input
+            type="password"
+            name="password"           
+            value={dataForm.password} 
+            onChange={handleChange}   
+            placeholder="Password"
+            required
+            disabled={loading}        
+            className="w-full bg-[#f4f7fe] p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#5b5ce2]"
+          />
 
-            <input
-              type="text"
-              name="username"
-              placeholder="Enter username"
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-full px-5 py-4 text-sm outline-none bg-transparent"
-            />
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-2">
-              Password
-            </label>
-
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-full px-5 py-4 text-sm outline-none bg-transparent"
-            />
-          </div>
-
-          {/* Checkbox */}
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <input type="checkbox" className="accent-[#1b12c9]" />
-
-            <p>
-              I accept the{" "}
-              <span className="text-[#1b12c9] underline cursor-pointer">
-                Terms & Conditions
-              </span>
-            </p>
-          </div>
-
-          {/* Button */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#1b12c9] hover:bg-[#140da1] text-white py-4 rounded-full font-semibold transition"
+            className="w-full bg-[#5b5ce2] text-white p-4 rounded-2xl font-semibold disabled:opacity-50 hover:bg-[#4a4bc7] transition-all transform active:scale-95"
           >
-            {loading ? (
-              <ImSpinner2 className="animate-spin mx-auto text-xl" />
-            ) : (
-              "LOGIN"
-            )}
+            {loading ? "Memeriksa Akun..." : "Login"}
           </button>
-
-          {/* Footer */}
-          <p className="text-center text-sm text-gray-500">
-            Already have an account?{" "}
-            <span className="text-[#1b12c9] cursor-pointer">
-              Login
-            </span>
-          </p>
         </form>
       </div>
     </div>

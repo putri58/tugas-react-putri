@@ -20,9 +20,9 @@ const Layanan = React.lazy(() => import("./pages/Layanan"));
 
 const Membership = React.lazy(() => import("./pages/Membership"));
 
-const InventoryManagement = React.lazy(
-  () => import("./pages/InventoryManagement"),
-);
+const UsersList = React.lazy(() => import("./pages/UsersList"));
+
+const InventoryManagement = React.lazy(() => import("./pages/InventoryManagement"),);
 
 const StaffManagement = React.lazy(() => import("./pages/StaffManagement"));
 
@@ -42,6 +42,23 @@ const LoginGuest = React.lazy(() => import("./pages/guest/LoginGuest"));
 
 const RegisterGuest = React.lazy(() => import("./pages/guest/RegisterGuest"));
 
+const KonsultasiDetail = React.lazy(() => import("./pages/guest/KonsultasiDetail"));
+
+const RawatInapDetail = React.lazy(() => import("./pages/guest/RawatInapDetail"));
+
+const GroomingDetail = React.lazy(() => import("./pages/guest/GroomingDetail"));
+
+const VaksinasiDetail = React.lazy(() => import("./pages/guest/VaksinasiDetail"));
+
+const BookingPage = React.lazy(() => import("./pages/guest/BookingPage"));
+
+const About = React.lazy(() => import("./pages/guest/About"));
+
+const FeedbackMember = React.lazy(() => import("./pages/member/FeedbackMember"));
+
+const DataTransaksi = React.lazy(() => import("./pages/DataTransaksi"));
+
+const KelolaFeedback = React.lazy(() => import("./pages/KelolaFeedback"));
 export default function App() {
   return (
     <Suspense fallback={<Loading />}>
@@ -51,6 +68,14 @@ export default function App() {
   <Route path="guest" element={<HomeGuest />} />
   <Route path="loginGuest" element={<LoginGuest />} />
   <Route path="registrasiGuest" element={<RegisterGuest />} />
+  <Route path="konsul" element={<KonsultasiDetail />} />
+  <Route path="ranap" element={<RawatInapDetail />} />
+  <Route path="grooming" element={<GroomingDetail />} />
+  <Route path="vaksin" element={<VaksinasiDetail />} />
+  <Route path="booking" element={<BookingPage />} />
+  <Route path="About" element={<About />} />
+
+
 
 
   {/* Main Layout */}
@@ -63,11 +88,15 @@ export default function App() {
   <Route path="membership" element={<Membership />} />
   <Route path="inventory" element={<InventoryManagement />} />
   <Route path="staff" element={<StaffManagement />} />
+  <Route path="user" element={<UsersList />} />
+  <Route path="transaksi" element={<DataTransaksi />} />
+  <Route path="feedback" element={<KelolaFeedback />} />
   <Route path="components" element={<Components />} />
 </Route>
 
   {/* Member */}
   <Route path="member" element={<Home />} />
+  <Route path="feedback" element={<FeedbackMember />} />
 
   {/* Auth Layout */}
   <Route element={<AuthLayout />}>

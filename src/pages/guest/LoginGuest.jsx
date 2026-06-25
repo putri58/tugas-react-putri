@@ -1,73 +1,111 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// 1. IMPORT useNavigate dari react-router-dom
+import { useNavigate } from "react-router-dom"; 
+import { loginAPI } from "../../services/LoginApi";
 
-export default function LoginGuest() {
-  const navigate = useNavigate();
+export default function Login() {
+  // 2. INISIALISASI FUNGSI NAVIGASI
+  const navigate = useNavigate(); 
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const handleLogin = (e) => {
+  const [dataForm, setDataForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simulasi Login Member
-    if (email && password) {
-      localStorage.setItem("role", "member");
-      navigate("/member");
+    try {
+      setLoading(true);
+      setError("");
+      setSuccess("");
+
+      const user = await loginAPI.loginUser(dataForm.username, dataForm.password);
+
+      if (user.length > 0) {
+        setSuccess(`Selamat datang kembali, ${user[0].username}! Login Berhasil.`);
+        
+        // Simpan data login ke localStorage browser
+        localStorage.setItem("user_session", JSON.stringify(user[0]));
+        
+        setDataForm({ username: "", password: "" });
+
+        // 3. DI SINI KUNCINYA: Berikan jeda 1,5 detik (1500ms) agar user sempat membaca 
+        // boks sukses hijau, lalu otomatis lempar ke halaman /admin
+        setTimeout(() => {
+          navigate("/admin");
+        }, 1500);
+
+      } else {
+        setError("Username atau Password salah! Akun tidak ditemukan.");
+      }
+    } catch (err) {
+      const errorMsg = err.response?.data?.message || err.message;
+      setError(`Login Gagal: ${errorMsg}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#071330] to-indigo-700">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-md">
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Login Account</h1>
 
-      <div className="bg-white p-10 rounded-3xl shadow-2xl w-[420px]">
+      {error && (
+        <div className="p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-2xl">
+          {error}
+        </div>
+      )}
 
-        <h1 className="text-4xl font-bold text-center mb-2">
-          Login Member
-        </h1>
+      {success && (
+        <div className="p-4 mb-4 text-sm text-green-800 bg-green-100 rounded-2xl">
+          {success}
+        </div>
+      )}
 
-        <p className="text-center text-gray-500 mb-8">
-          Masuk ke akun VetCare Anda
-        </p>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <input
+          type="text"
+          name="username"           
+          value={dataForm.username} 
+          onChange={handleChange}   
+          placeholder="Username"
+          required
+          disabled={loading}        
+          className="w-full bg-[#f4f7fe] p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#5b5ce2]"
+        />
 
-        <form onSubmit={handleLogin}>
+        <input
+          type="password"
+          name="password"           
+          value={dataForm.password} 
+          onChange={handleChange}   
+          placeholder="Password"
+          required
+          disabled={loading}        
+          className="w-full bg-[#f4f7fe] p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#5b5ce2]"
+        />
 
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border p-4 rounded-xl mb-4"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full border p-4 rounded-xl mb-6"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white py-4 rounded-xl font-semibold"
-          >
-            Login
-          </button>
-
-        </form>
-
-        <p className="text-center mt-6">
-          Belum punya akun?
-          <span
-            onClick={() => navigate("/guest/register")}
-            className="text-indigo-600 font-semibold cursor-pointer ml-1"
-          >
-            Daftar
-          </span>
-        </p>
-
-      </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-[#5b5ce2] text-white p-4 rounded-2xl font-semibold disabled:opacity-50 hover:bg-[#4a4bc7] transition-all"
+        >
+          {loading ? "Memeriksa Akun..." : "Login"}
+        </button>
+      </form>
     </div>
   );
 }

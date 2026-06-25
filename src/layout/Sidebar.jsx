@@ -10,6 +10,9 @@ import {
   FaUserCheck,
   FaBox,
   FaUserTie,
+  FaUserCog,
+  FaReceipt,
+  FaRegCommentDots,
 } from "react-icons/fa";
 
 import Container from "../components/layout/Container";
@@ -67,6 +70,21 @@ export default function Sidebar() {
         <NavLink to="/admin/staff" className={menuClass}>
           <FaUserTie />
           <span>Staff</span>
+        </NavLink>
+
+        <NavLink to="/admin/user" className={menuClass}>
+          <FaUserCog />
+          <span>User</span>
+        </NavLink>
+
+        <NavLink to="/admin/transaksi" className={menuClass}>
+          <FaReceipt />
+          <span>Data Transaksi</span>
+        </NavLink>
+
+        <NavLink to="/admin/feedback" className={menuClass}>
+          <FaRegCommentDots />
+          <span>Kelola Feedback</span>
         </NavLink>
       </div>
 
