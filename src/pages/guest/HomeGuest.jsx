@@ -171,22 +171,24 @@ export default function HomeGuest() {
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4 mt-10">
-                {/* CTA Utama — WhatsApp */}
+                {/* CTA Utama — Booking Sekarang */}
+                <button
+                  onClick={() => navigate("/booking")}
+                  className="inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-4 rounded-2xl font-extrabold text-base transition shadow-lg shadow-yellow-900/30 cursor-pointer"
+                >
+                  <FaPaw size={18} />
+                  Booking Sekarang
+                </button>
+
+                {/* CTA Sekunder — WhatsApp */}
                 <a
                   href="https://wa.me/6281234567890?text=Halo%20Putri%20Pet%20Care%2C%20saya%20ingin%20mengetahui%20lebih%20lanjut%20tentang%20layanan%20Anda."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-green-500 hover:bg-green-400 text-white px-8 py-4 rounded-2xl font-bold text-base transition shadow-lg shadow-green-900/30"
-                >
-                  <FaWhatsapp size={22} />
-                  Hubungi Kami
-                </a>
-
-                <a
-                  href="#services"
                   className="inline-flex items-center gap-2 border border-white/40 hover:bg-white/10 text-white px-8 py-4 rounded-2xl font-semibold text-base transition"
                 >
-                  Lihat Layanan
+                  <FaWhatsapp size={18} />
+                  Hubungi Kami
                 </a>
               </div>
 
