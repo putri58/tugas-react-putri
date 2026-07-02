@@ -28,15 +28,14 @@ export default function Register() {
       setError("");
       setSuccess("");
 
-      // Mengirimkan data dalam bentuk array [dataForm] sesuai kebutuhan Supabase
       await regisAPI.registerUser([dataForm]); 
 
       setSuccess("Registrasi akun berhasil disimpan !");
       
-      // Mengosongkan input form setelah sukses regis
+
       setDataForm({ username: "", password: "" });
     } catch (err) {
-      // Menangkap pesan error detail jika database menolak
+   
       const errorMsg = err.response?.data?.message || err.message;
       setError(`Registrasi Gagal: ${errorMsg}`);
     } finally {

@@ -1,8 +1,6 @@
 import axios from 'axios'
 
 const API_URL = "https://jneeobixmqsidrqpjebu.supabase.co/rest/v1/regis"
-
-// PASTIKAN KEY INI UTUH DAN TIDAK ADA HURUF YANG TERPOTONG
 const API_KEY = "sb_publishable_Cvh5K2mlvadYq3yuD__82Q_5St9wfyG" 
 
 const headers = {
