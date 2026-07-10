@@ -7,10 +7,10 @@ const headers = {
     apikey: API_KEY,
     Authorization: `Bearer ${API_KEY}`,
     "Content-Type": "application/json",
-    "Prefer": "return=representation" 
 }
 
 export const regisAPI = {
+    // userData harus object: { username, password, name }
     async registerUser(userData) {
         const response = await axios.post(API_URL, userData, { headers })
         return response.data

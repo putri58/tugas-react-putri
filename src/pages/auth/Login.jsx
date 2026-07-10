@@ -36,19 +36,21 @@ export default function Login() {
       const user = await loginAPI.loginUser(dataForm.username, dataForm.password);
 
       if (user.length > 0) {
-        setSuccess(`Selamat datang kembali, ${user[0].username}! Login Berhasil.`);
-        localStorage.setItem("user_session", JSON.stringify(user[0]));
+        const userData = user[0];
+        const role = userData.role || "user";
+
+        // Halaman ini khusus admin — tolak jika bukan admin
+        if (role !== "admin") {
+          setError("Akun ini bukan admin. Silakan login melalui halaman utama.");
+          return;
+        }
+
+        setSuccess(`Selamat datang kembali, ${userData.username}! Login Berhasil.`);
+        localStorage.setItem("user_session", JSON.stringify(userData));
         setDataForm({ username: "", password: "" });
 
-        // 1. Jalankan animasi "Fade Out" (menghilang perlahan) setelah 1 detik
-        setTimeout(() => {
-          setIsExiting(true);
-        }, 1000);
-
-        // 2. Berpindah halaman setelah animasi menghilang selesai (total 1.5 detik)
-        setTimeout(() => {
-          navigate("/admin");
-        }, 1500);
+        setTimeout(() => { setIsExiting(true); }, 1000);
+        setTimeout(() => { navigate("/admin"); }, 1500);
 
       } else {
         setError("Username atau Password salah! Akun tidak ditemukan.");

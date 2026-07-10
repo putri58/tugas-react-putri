@@ -10,17 +10,32 @@ const headers = {
 }
 
 export const loginAPI = {
-    async loginUser(username, password) {
-        // LOGIC: Cari di tabel 'regis' yang username == input AND password == input
-        // Supabase REST API menggunakan filter '?kolom=eq.nilai'
+    /**
+     * Login dengan username atau name (case-insensitive).
+     * Supabase REST: filter username=eq.X&password=eq.Y
+     * Jika tidak ketemu by username, coba by name.
+     */
+    async loginUser(usernameInput, password) {
+        // Encode karakter khusus seperti @ dan # agar URL tidak rusak
+        const encodedUsername = encodeURIComponent(usernameInput);
+        const encodedPassword = encodeURIComponent(password);
+
+        // Coba cari by username (exact match)
         const response = await axios.get(
-            `${API_URL}?username=eq.${username}&password=eq.${password}`, 
+            `${API_URL}?username=eq.${encodedUsername}&password=eq.${encodedPassword}`,
             { headers }
         )
-        
-        // Supabase akan mengembalikan Array:
-        // Jika COCOK -> berisi objek data user [ {username: "...", ...} ]
-        // Jika SALAH -> berupa array kosong [ ]
-        return response.data 
+
+        if (response.data.length > 0) {
+            return response.data
+        }
+
+        // Jika tidak ketemu, coba cari by name (untuk kemudahan login)
+        const byName = await axios.get(
+            `${API_URL}?name=ilike.${encodedUsername}&password=eq.${encodedPassword}`,
+            { headers }
+        )
+
+        return byName.data
     }
 }

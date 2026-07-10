@@ -33,18 +33,24 @@ export default function LoginGuest() {
 
       if (user.length > 0) {
         const userData = user[0];
-        setSuccess(`Selamat datang, ${userData.username || userData.namaLengkap}!`);
+        const role = userData.role || "user";
 
-        // Simpan ke member_session (berbeda dari admin user_session)
-        localStorage.setItem("member_session", JSON.stringify(userData));
+        setSuccess(`Selamat datang, ${userData.name || userData.username}!`);
         setDataForm({ username: "", password: "" });
 
-        // Redirect ke booking page atau member dashboard
-        const redirectTo = sessionStorage.getItem("booking_redirect") || "/member";
-        sessionStorage.removeItem("booking_redirect");
-
-        setTimeout(() => setIsExiting(true), 1000);
-        setTimeout(() => navigate(redirectTo), 1500);
+        if (role === "admin") {
+          // ── Admin → simpan ke user_session, masuk ke /admin ──
+          localStorage.setItem("user_session", JSON.stringify(userData));
+          setTimeout(() => setIsExiting(true), 1000);
+          setTimeout(() => navigate("/admin"), 1500);
+        } else {
+          // ── User/Member → simpan ke member_session, masuk ke /member ──
+          localStorage.setItem("member_session", JSON.stringify(userData));
+          const redirectTo = sessionStorage.getItem("booking_redirect") || "/member";
+          sessionStorage.removeItem("booking_redirect");
+          setTimeout(() => setIsExiting(true), 1000);
+          setTimeout(() => navigate(redirectTo), 1500);
+        }
       } else {
         setError("Username atau password salah. Akun tidak ditemukan.");
       }
@@ -73,8 +79,8 @@ export default function LoginGuest() {
             <FaPaw className="text-yellow-400" />
             Putri<span className="text-indigo-600">PetCare</span>
           </button>
-          <h2 className="text-xl font-bold text-slate-800 mt-3">Login Member</h2>
-          <p className="text-slate-500 text-sm mt-1">Masuk untuk booking & kelola hewan peliharaan Anda</p>
+          <h2 className="text-xl font-bold text-slate-800 mt-3">Login</h2>
+          <p className="text-slate-500 text-sm mt-1">Masuk dengan username atau nama terdaftar</p>
         </div>
 
         {/* Alerts */}
@@ -85,7 +91,7 @@ export default function LoginGuest() {
         )}
         {success && (
           <div className="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-2xl mb-5">
-            ✅ {success} Mengarahkan...
+            ✅ {success} Mengarahkan ke {JSON.parse(localStorage.getItem("user_session") || localStorage.getItem("member_session") || "{}").role === "admin" ? "dashboard admin" : "dashboard member"}...
           </div>
         )}
 
@@ -98,7 +104,7 @@ export default function LoginGuest() {
               name="username"
               value={dataForm.username}
               onChange={handleChange}
-              placeholder="Masukkan username"
+              placeholder="Username atau nama terdaftar"
               required
               disabled={loading}
               className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl text-sm focus:outline-indigo-500 focus:ring-2 focus:ring-indigo-200"
@@ -150,6 +156,10 @@ export default function LoginGuest() {
         <p className="text-center text-xs text-slate-400 mt-4">
           <button onClick={() => navigate("/guest")} className="hover:text-indigo-600 cursor-pointer">
             ← Kembali ke beranda
+          </button>
+          {" · "}
+          <button onClick={() => navigate("/setup")} className="hover:text-indigo-600 cursor-pointer">
+            Setup Admin
           </button>
         </p>
       </div>

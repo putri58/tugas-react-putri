@@ -224,8 +224,8 @@ export default function BookingPage() {
             {isLoggedIn && (
               <div className="mt-8 bg-white/10 rounded-2xl p-4">
                 <p className="text-xs text-slate-300 mb-1">Booking sebagai:</p>
-                <p className="font-bold text-white">{member.namaLengkap || member.username}</p>
-                <p className="text-xs text-yellow-400">{member.email || ""}</p>
+                <p className="font-bold text-white">{member.name || member.username}</p>
+                <p className="text-xs text-yellow-400">@{member.username}</p>
               </div>
             )}
 
