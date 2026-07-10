@@ -43,11 +43,15 @@ export default function DataTransaksi() {
   };
 
   // ── Admin konfirmasi ────────────────────────────────────
-  const handleConfirm = (bookingId, ownerName, service) => {
+  const handleConfirm = (bookingId, ownerName, service, isMember) => {
     crmStore.confirmBooking(bookingId);
     load();
     const pts = SERVICE_POINTS[service] || 0;
-    showMsg(`✅ Booking dikonfirmasi! +${pts} poin dikirim ke akun ${ownerName}.`);
+    if (isMember && pts > 0) {
+      showMsg(`✅ Booking dikonfirmasi! +${pts} poin dikirim ke akun ${ownerName}.`);
+    } else {
+      showMsg(`✅ Booking dikonfirmasi! (Booking Guest — tidak ada poin)`);
+    }
   };
 
   // ── Admin tolak ─────────────────────────────────────────
@@ -82,12 +86,24 @@ export default function DataTransaksi() {
             {lastRefresh && <span className="ml-2">Terakhir: {lastRefresh}</span>}
           </p>
         </div>
-        <button
-          onClick={load}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl text-sm transition cursor-pointer"
-        >
-          <FaSync size={12} /> Refresh
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={() => {
+              if (!window.confirm("Reset SEMUA data booking? Data lama yang corrupt akan dihapus.")) return;
+              crmStore.clearAllBookings();
+              load();
+            }}
+            className="flex items-center gap-2 bg-red-100 hover:bg-red-200 text-red-600 font-semibold px-4 py-2 rounded-xl text-sm transition cursor-pointer"
+          >
+            Reset Data
+          </button>
+          <button
+            onClick={load}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl text-sm transition cursor-pointer"
+          >
+            <FaSync size={12} /> Refresh
+          </button>
+        </div>
       </div>
 
       {/* ── Notifikasi aksi ── */}
@@ -178,6 +194,11 @@ export default function DataTransaksi() {
                     <td className="p-4">
                       <p className="font-semibold text-slate-800">{bkg.ownerName}</p>
                       <p className="text-xs text-slate-400">@{bkg.ownerUsername}</p>
+                      {!bkg.isMember && (
+                        <span className="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-semibold mt-0.5 inline-block">
+                          Guest
+                        </span>
+                      )}
                     </td>
 
                     <td className="p-4">
@@ -197,9 +218,13 @@ export default function DataTransaksi() {
                     </td>
 
                     <td className="p-4">
-                      <span className="flex items-center gap-1 text-amber-600 font-bold text-xs">
-                        <FaCoins size={11} /> +{bkg.points} pts
-                      </span>
+                      {bkg.isMember && bkg.points > 0 ? (
+                        <span className="flex items-center gap-1 text-amber-600 font-bold text-xs">
+                          <FaCoins size={11} /> +{bkg.points} pts
+                        </span>
+                      ) : (
+                        <span className="text-slate-300 text-xs font-medium">— (Guest)</span>
+                      )}
                     </td>
 
                     <td className="p-4">
@@ -216,7 +241,7 @@ export default function DataTransaksi() {
                           <>
                             {/* Konfirmasi */}
                             <button
-                              onClick={() => handleConfirm(bkg.id, bkg.ownerName, bkg.service)}
+                              onClick={() => handleConfirm(bkg.id, bkg.ownerName, bkg.service, bkg.isMember)}
                               className="flex items-center gap-1 bg-green-500 hover:bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition cursor-pointer"
                               title="Konfirmasi Booking"
                             >

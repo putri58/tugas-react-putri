@@ -100,6 +100,10 @@ export const crmStore = {
     const bookings = readStore(KEYS.bookings);
     const user = JSON.parse(localStorage.getItem("member_session") || "{}");
 
+    // ── Cek apakah yang booking adalah member yang login ──
+    // Jika tidak ada member_session atau username kosong → ini booking Guest, tidak dapat poin
+    const isMember = !!(user && user.username);
+
     const price = SERVICE_PRICE[formData.service] || 0;
     const invoiceNum = String(Date.now()).slice(-4);
     const dateTag = new Date().toISOString().slice(0, 10).replace(/-/g, "");
@@ -114,11 +118,13 @@ export const crmStore = {
       dateFormatted: formatDate(formData.date),
       timeSlot: formData.timeSlot,
       notes: formData.notes || "-",
-      ownerName: user.name || user.username || "Guest",      ownerUsername: user.username || "guest",
+      ownerName: user.name || user.username || "Guest",
+      ownerUsername: user.username || "guest",
+      isMember,                                          // flag: apakah dari member login
       total: price,
       totalFormatted: `Rp ${price.toLocaleString("id-ID")}`,
-      points: SERVICE_POINTS[formData.service] || 0,
-      status: "Menunggu Konfirmasi",   // status awal
+      points: isMember ? (SERVICE_POINTS[formData.service] || 0) : 0, // Guest = 0 poin
+      status: "Menunggu Konfirmasi",
       confirmedAt: null,
       createdAt: nowDate(),
     };
@@ -157,10 +163,11 @@ export const crmStore = {
     };
     writeStore(KEYS.bookings, bookings);
 
-    // Tambah ke riwayat transaksi member
-    this._addMemberTransaction(booking);
-    // Tambah poin member
-    this._addMemberPoints(booking.ownerUsername, booking.points, booking);
+    // Hanya member yang login yang dapat riwayat transaksi & poin
+    if (booking.isMember && booking.ownerUsername && booking.ownerUsername !== "guest") {
+      this._addMemberTransaction(booking);
+      this._addMemberPoints(booking.ownerUsername, booking.points, booking);
+    }
   },
 
   /** Admin menolak booking */
@@ -175,6 +182,11 @@ export const crmStore = {
   deleteBooking(bookingId) {
     const bookings = readStore(KEYS.bookings).filter((b) => b.id !== bookingId);
     writeStore(KEYS.bookings, bookings);
+  },
+
+  /** Reset SEMUA data booking (untuk bersihkan data lama yang corrupt) */
+  clearAllBookings() {
+    writeStore(KEYS.bookings, []);
   },
 
   // ──────────────────────────────────────────────────────────
